@@ -1,0 +1,245 @@
+@namespace DatabaseStudyGuide.Pages.Chapters
+
+<div class="markdown-content">
+    <h1>De Principes van Relationele Datamodellering</h1>
+    <p>Een Theoretische Uiteenzetting ter Voorbereiding op Examen</p>
+
+    <h2>Deel 1: De Fundamenten van Relationele Datamodellering</h2>
+    <p>
+        Voordat het ontwerp van een datamodel kan beginnen, is een helder begrip van de basisconcepten
+        essentieel. Deze sectie legt de basis door de kernbegrippen data, informatie en databases te
+        definiëren.
+    </p>
+    
+    <h3>1.1 De Essentie: Van Data naar Informatie en Databases</h3>
+    <p>
+        De concepten 'data' en 'informatie' worden vaak door elkaar gebruikt, maar vertegenwoordigen
+        fundamenteel verschillende niveaus van abstractie.
+    </p>
+    <ul>
+        <li>
+            <strong>Data</strong> zijn de ruwe, ongeorganiseerde feiten die worden verzameld. Dit kunnen
+            cijfers, tekst of andere observaties zijn die op zichzelf geen interpretatie of context
+            bieden. Een voorbeeld is een lange lijst van productprijzen die wekelijks wordt genoteerd.
+        </li>
+        <li>
+            <strong>Informatie</strong> ontstaat wanneer data wordt verwerkt, georganiseerd,
+            gestructureerd en gepresenteerd binnen een specifieke context om het nuttig te maken. Informatie is
+            geïnterpreteerde data. In het voorbeeld van de productprijzen zou de informatie de conclusie kunnen zijn dat
+            de gemiddelde prijs van een product het afgelopen jaar is gestegen.
+        </li>
+    </ul>
+    <p>
+        De brug tussen ruwe data en bruikbare informatie wordt vaak geslagen door een <strong>database</strong>.
+        Een database (of databank) wordt gedefinieerd als een verzameling van permanente (of persistente)
+        gegevens die zijn opgeslagen in een logische structuur. Deze verzameling gegevens wordt beheerd
+        door een softwarepakket dat bekend staat als een <strong>Database Management System (DBMS)</strong>.
+    </p>
+
+    <h3>1.2 Het Relationele Model: Eigenschappen van Tabellen, Rijen en Kolommen</h3>
+    <p>Het meest gebruikte model voor het structureren van databases is
+        het relationele model, geïntroduceerd door E.F. Codd in 1970. In dit model worden gegevens
+        opgeslagen in tabellen, die de conceptuele basis vormen van de structuur.</p>
+    <p>Een <strong>tabel</strong> bestaat uit:</p>
+    <ul>
+        <li><strong>Rijen</strong> (ook wel records genoemd): Elke rij vertegenwoordigt één uniek
+            exemplaar van het object dat de tabel beschrijft (bv. één specifieke klant, één
+            specifieke bestelling).</li>
+        <li><strong>Kolommen</strong> (ook wel attributen of velden genoemd): Elke kolom beschrijft
+            een specifieke eigenschap van dat object (bv. de voornaam, het adres, de besteldatum).
+        </li>
+    </ul>
+    <p>Het relationele model is niet zomaar een willekeurige
+        spreadsheet; het wordt beheerst door strikte, fundamentele eigenschappen die de
+        data-integriteit waarborgen:</p>
+    <ul>
+        <li>De volgorde van de rijen in een tabel is onbelangrijk.</li>
+        <li>De volgorde van de kolommen in een tabel is onbelangrijk.</li>
+        <li>Elke waarde in een specifieke kolom moet van hetzelfde type (datatype) zijn.</li>
+        <li>De kruising van een specifieke rij en een specifieke kolom kan maar één waarde bevatten
+            (atomische waarden). Dit principe verklaart waarom samengestelde gegevens, zoals het
+            opslaan van "Jan Peeters" in één veld, problematisch zijn.</li>
+        <li><strong>Cruciale Eigenschap:</strong> Identieke rijen mogen niet voorkomen in een tabel.
+        </li>
+    </ul>
+    <p>Deze regel vormt de fundamentele rechtvaardiging voor het bestaan
+        van sleutels: als geen twee rijen identiek mogen zijn, moet er een mechanisme bestaan om
+        elke rij uniek te identificeren. Dit leidt direct tot het concept van de Primaire Sleutel.
+    </p>
+
+    <h2>Deel 2: De Drie Abstractieniveaus van Datamodellering</h2>
+    <p>
+        Het ontwerpen van een database is een proces dat in meerdere fasen verloopt, van een abstract
+        idee tot een concrete implementatie. Deze fasen worden vertegenwoordigd door drie modellen: het
+        conceptuele, het logische en het fysieke model.
+    </p>
+
+    <h3>2.1 Het Conceptuele Model</h3>
+    <p>
+        Dit is het hoogste abstractieniveau. Het beschrijft de 'wat'-vraag: welke informatie moet het
+        systeem bevatten?
+    </p>
+    <ul>
+        <li><strong>Doel:</strong> Begrijpen van de business-vereisten en communiceren met stakeholders
+            (niet-technisch).</li>
+        <li><strong>Focus:</strong> Entiteiten (bv. Klant, Product) en de relaties daartussen (bv. Klant 'koopt' Product).</li>
+        <li><strong>Details:</strong> Geen attributen, geen sleutels, geen datatypes.</li>
+    </ul>
+
+    <h3>2.2 Het Logische Model</h3>
+    <p>
+        Dit model is een gedetailleerdere uitwerking van het conceptuele model. Het beschrijft de
+        structuur van de data, onafhankelijk van een specifieke database-technologie. Het <strong>relationele model</strong>
+        is het meest voorkomende type logisch model.
+    </p>
+    <ul>
+        <li><strong>Doel:</strong> Een 'blauwdruk' maken voor de database die door ontwikkelaars en
+            DBA's kan worden begrepen.</li>
+        <li><strong>Focus:</strong> Alle attributen (kolommen) voor elke entiteit. Definiëren van
+            Primaire Sleutels (PK) en Refererende Sleutels (FK) om relaties te implementeren.</li>
+        <li><strong>Relationele Model:</strong> Data wordt georganiseerd in tabellen (relaties). Elke
+            tabel bestaat uit rijen (tuples) en kolommen (attributen). Relaties tussen tabellen worden gelegd
+            via sleutels.</li>
+    </ul>
+
+    <h3>2.3 Het Fysieke Model</h3>
+    <p>
+        Dit is de concrete implementatie van het logische model in een specifieke DBMS (bv. MySQL,
+        PostgreSQL, SQL Server). Het beschrijft 'hoe' de data fysiek wordt opgeslagen.
+    </p>
+    <ul>
+        <li><strong>Doel:</strong> Het daadwerkelijk genereren van de database-schema.</li>
+        <li><strong>Focus:</strong> Specifieke datatypes (bv. `VARCHAR(100)`, `INT`, `DATETIME`).
+            Definiëren van indexen, constraints, partities en andere opslag-specifieke details.</li>
+    </ul>
+
+    <!-- Interactieve Model Vergelijker -->
+    <div style="background-color: #2d2d30; padding: 20px; border-radius: 8px; margin-top: 30px;">
+        <h3 style="margin-top: 0;">Interactieve Model Vergelijker</h3>
+        <p>Vergelijk de drie modellen side-by-side. Selecteer een modeltype om de details te zien.</p>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <button class="btn @(selectedModel == "conceptueel" ? "btn-primary" : "btn-secondary")" @onclick="@(() => selectedModel = "conceptueel")">Conceptueel</button>
+            <button class="btn @(selectedModel == "logisch" ? "btn-primary" : "btn-secondary")" @onclick="@(() => selectedModel = "logisch")">Logisch</button>
+            <button class="btn @(selectedModel == "fysiek" ? "btn-primary" : "btn-secondary")" @onclick="@(() => selectedModel = "fysiek")">Fysiek</button>
+        </div>
+
+        <div style="padding: 15px; background-color: #1e1e1e; border: 1px solid #3e3e42; border-radius: 6px;">
+            @if (selectedModel == "conceptueel")
+            {
+                <p><strong>Conceptueel Model:</strong></p>
+                <div style="display: flex; gap: 20px; justify-content: center; align-items: center; padding: 20px;">
+                    <div style="border: 2px solid #3b82f6; padding: 10px 20px; border-radius: 8px; color: #3b82f6; font-weight: bold;">Klant</div>
+                    <div>heeft</div>
+                    <div style="border: 2px solid #3b82f6; padding: 10px 20px; border-radius: 8px; color: #3b82f6; font-weight: bold;">Bestelling</div>
+                </div>
+            }
+            else if (selectedModel == "logisch")
+            {
+                <p><strong>Logisch Model (Relationeel):</strong></p>
+                <div style="display: flex; gap: 20px; justify-content: center; align-items: center; padding: 20px;">
+                    <div style="border: 2px solid #10b981; padding: 10px; border-radius: 8px; color: #e0e0e0;">
+                        <div style="border-bottom: 1px solid #3e3e42; margin-bottom: 5px; font-weight: bold;">Klant</div>
+                        <ul style="padding-left: 20px; margin: 0; font-size: 0.9em;">
+                            <li><strong style="color: #10b981;">KlantID (PK)</strong></li>
+                            <li>Naam</li>
+                            <li>Email</li>
+                        </ul>
+                    </div>
+                     <div>1..N</div>
+                    <div style="border: 2px solid #10b981; padding: 10px; border-radius: 8px; color: #e0e0e0;">
+                        <div style="border-bottom: 1px solid #3e3e42; margin-bottom: 5px; font-weight: bold;">Bestelling</div>
+                        <ul style="padding-left: 20px; margin: 0; font-size: 0.9em;">
+                            <li><strong style="color: #10b981;">BestellingID (PK)</strong></li>
+                            <li>Datum</li>
+                            <li><em style="color: #a855f7;">KlantID (FK)</em></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            else if (selectedModel == "fysiek")
+            {
+                <p><strong>Fysiek Model (SQL):</strong></p>
+                <pre><code class="language-sql">CREATE TABLE Klant (
+    KlantID INT NOT NULL AUTO_INCREMENT,
+    Naam VARCHAR(100) NOT NULL,
+    Email VARCHAR(150) NOT NULL,
+    PRIMARY KEY (KlantID),
+    UNIQUE (Email)
+);
+
+CREATE TABLE Bestelling (
+    BestellingID INT NOT NULL AUTO_INCREMENT,
+    Datum DATE NOT NULL,
+    KlantID INT NOT NULL,
+    PRIMARY KEY (BestellingID),
+    FOREIGN KEY (KlantID) REFERENCES Klant(KlantID)
+);</code></pre>
+            }
+        </div>
+    </div>
+
+    <!-- Interactieve Naam Checker -->
+    <div style="background-color: #2d2d30; padding: 20px; border-radius: 8px; margin-top: 30px;">
+        <h3 style="margin-top: 0;">Interactieve Naam Checker</h3>
+        <p>Test je kennis van naamgeving. Geef een correcte naam voor een attribuut in de entiteit 'Klant' (bv. 'klantNaam' of 'voornaam').</p>
+        
+        <input @bind="nameCheckInput" @bind:event="oninput" placeholder="bv. klant naam, klantnummer, ..." style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: #1e1e1e; color: white; border: 1px solid #3e3e42; border-radius: 4px;" />
+        
+        @if (!string.IsNullOrWhiteSpace(nameCheckInput))
+        {
+            <div style="padding: 10px; border-radius: 4px; @GetNameCheckStyle()">
+                @GetNameCheckFeedback()
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private string selectedModel = "conceptueel";
+    
+    private string nameCheckInput = "";
+
+    private string GetNameCheckStyle()
+    {
+        if (IsNameValid(nameCheckInput)) return "background-color: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981;";
+        return "background-color: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444;";
+    }
+
+    private string GetNameCheckFeedback()
+    {
+        if (IsNameValid(nameCheckInput)) return "✅ Goede naamgeving! CamelCase of Snake_case gebruik is prima, en het is beschrijvend.";
+        return "❌ Vermijd spaties, speciale tekens (behalve underscore) en begin bij voorkeur met een kleine letter.";
+    }
+
+    private bool IsNameValid(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return false;
+        // Simple check: no spaces, no special chars except _
+        if (input.Contains(" ")) return false;
+        if (!System.Text.RegularExpressions.Regex.IsMatch(input, @"^[a-zA-Z0-9_]+$")) return false;
+        return true;
+    }
+}
+
+<style>
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    .btn-secondary {
+        background-color: #3e3e42;
+        color: #cccccc;
+    }
+    .btn-secondary:hover {
+        background-color: #505054;
+    }
+</style>

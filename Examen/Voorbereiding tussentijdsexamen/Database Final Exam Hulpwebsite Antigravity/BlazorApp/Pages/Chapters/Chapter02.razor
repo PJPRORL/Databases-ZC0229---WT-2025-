@@ -1,0 +1,318 @@
+@namespace DatabaseStudyGuide.Pages.Chapters
+
+<div class="markdown-content">
+    <h1>Deel 3: De Architectuur van Sleutels</h1>
+    <p>
+        Sleutels (Keys) zijn de fundamentele bouwstenen die entiteiten uniek identificeren en relaties tussen
+        entiteiten mogelijk maken. Een correcte sleutelarchitectuur is cruciaal voor de integriteit van de
+        database.
+    </p>
+
+    <h2>3.1 Primaire Sleutel (Primary Key - PK)</h2>
+    <p>
+        De primaire sleutel is een kolom (of een set kolommen) die elke rij in een tabel uniek
+        identificeert.
+    </p>
+    <ul>
+        <li><strong>Regels:</strong> Moet <strong>uniek</strong> zijn voor elke rij en mag <strong>nooit `NULL`</strong> (leeg) zijn (NNA).</li>
+        <li><strong>Keuze:</strong> Kan een 'natuurlijke' sleutel zijn (bv. Rijksregisternummer) of een 'surrogaat' sleutel.</li>
+        <li><strong>Praktijk:</strong> Er kan maar één primaire sleutel per tabel zijn.</li>
+    </ul>
+    <pre><code class="language-sql">-- KlantID is de Primaire Sleutel
+CREATE TABLE Klant (
+    KlantID INT NOT NULL,
+    Naam VARCHAR(100),
+    PRIMARY KEY (KlantID)
+);</code></pre>
+
+    <h2>3.2 Surrogaat Sleutel (Surrogate Key)</h2>
+    <p>
+        Een surrogaat sleutel is een kunstmatige sleutel die wordt toegevoegd aan een tabel om als primaire
+        sleutel te dienen. Het heeft geen 'business' betekenis.
+    </p>
+    <ul>
+        <li><strong>Kenmerken:</strong> Meestal een auto-incrementing integer (bv. `AUTO_INCREMENT` in MySQL, `IDENTITY` in SQL Server).</li>
+        <li><strong>Voordeel:</strong> Sterk aanbevolen. Ze zijn stabiel (veranderen nooit), uniek en eenvoudig. Een natuurlijke sleutel (zoals een e-mailadres) kan veranderen, wat desastreus is voor relaties.</li>
+    </ul>
+    <pre><code class="language-sql">-- KlantID is een Surrogaat Sleutel
+CREATE TABLE Klant (
+    KlantID INT NOT NULL AUTO_INCREMENT,
+    Email VARCHAR(100) NOT NULL,
+    PRIMARY KEY (KlantID)
+);</code></pre>
+
+    <h2>3.3 Alternatieve Sleutel (Alternate Key - AK)</h2>
+    <p>
+        Een alternatieve sleutel is een kolom (of set kolommen) die ook uniek is, maar niet gekozen is als
+        primaire sleutel. Dit zijn andere 'kandidaat-sleutels'.
+    </p>
+    <ul>
+        <li><strong>Implementatie:</strong> Wordt afgedwongen met een `UNIQUE` constraint.</li>
+        <li><strong>Voorbeeld:</strong> In de tabel `Klant` met `KlantID` als PK (surrogaat), is `Email` of `Rijksregisternummer` een perfecte kandidaat voor een Alternatieve Sleutel, omdat deze ook uniek moeten zijn.</li>
+    </ul>
+    <pre><code class="language-sql">CREATE TABLE Klant (
+    KlantID INT NOT NULL AUTO_INCREMENT,
+    Email VARCHAR(100) NOT NULL,
+    PRIMARY KEY (KlantID),
+    UNIQUE (Email)  -- Email is een Alternatieve Sleutel
+);</code></pre>
+
+    <h2>3.4 Refererende Sleutel (Foreign Key - FK)</h2>
+    <p>
+        Een refererende sleutel is een kolom (of set kolommen) in één tabel die verwijst naar de primaire
+        sleutel in een andere tabel. Dit is hoe relaties fysiek worden gelegd.
+    </p>
+    <ul>
+        <li><strong>Doel:</strong> Garandeert referentiële integriteit. Het zorgt ervoor dat je geen 'zwevende' data krijgt (bv. een bestelling zonder klant).</li>
+        <li><strong>Regel:</strong> De waarde in de FK-kolom moet overeenkomen met een bestaande waarde in de PK-kolom waarnaar het verwijst, of het moet `NULL` zijn (indien toegestaan).</li>
+    </ul>
+    <pre><code class="language-sql">CREATE TABLE Bestelling (
+    BestellingID INT NOT NULL AUTO_INCREMENT,
+    Datum DATE,
+    KlantID INT,  -- Dit is de Foreign Key kolom
+    PRIMARY KEY (BestellingID),
+    
+    -- Dit legt de relatie vast:
+    FOREIGN KEY (KlantID) REFERENCES Klant(KlantID)
+);</code></pre>
+
+    <!-- Interactieve Sleutel Hiërarchie -->
+    <div style="background-color: #2d2d30; padding: 20px; border-radius: 8px; margin-top: 30px;">
+        <h3 style="margin-top: 0;">Interactieve Sleutel Hiërarchie</h3>
+        <p>Bekijk hoe sleutels worden geselecteerd van Superkey naar Candidate Key naar Primary Key. Klik op elke stap.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div @onclick="@(() => ToggleStep(1))" style="cursor: pointer; border: 2px solid #3e3e42; padding: 15px; border-radius: 6px; background-color: @(activeStep == 1 ? "#3e3e42" : "#1e1e1e");">
+                <strong>1. Superkey (Supersleutel)</strong>
+                @if (activeStep == 1)
+                {
+                    <div style="margin-top: 10px; font-size: 0.9em; color: #ccc;">
+                        <p>Elke set attributen die een rij uniek identificeert (mag overbodige attributen bevatten).</p>
+                        <p><em>Voorbeeld: {id}, {id, naam}, {studentNr, email}</em></p>
+                    </div>
+                }
+            </div>
+            <div style="text-align: center;">↓</div>
+            <div @onclick="@(() => ToggleStep(2))" style="cursor: pointer; border: 2px solid #3e3e42; padding: 15px; border-radius: 6px; background-color: @(activeStep == 2 ? "#3e3e42" : "#1e1e1e");">
+                <strong>2. Candidate Key (Kandidaatsleutel)</strong>
+                @if (activeStep == 2)
+                {
+                    <div style="margin-top: 10px; font-size: 0.9em; color: #ccc;">
+                        <p>Een minimale superkey - geen attributen kunnen worden verwijderd zonder uniciteit te verliezen.</p>
+                        <p><em>Voorbeeld: {id}, {studentNr}, {email}</em></p>
+                    </div>
+                }
+            </div>
+            <div style="text-align: center;">↓</div>
+            <div @onclick="@(() => ToggleStep(3))" style="cursor: pointer; border: 2px solid #10b981; padding: 15px; border-radius: 6px; background-color: @(activeStep == 3 ? "rgba(16, 185, 129, 0.1)" : "#1e1e1e");">
+                <strong style="color: #10b981">3. Primary Key (PK)</strong>
+                @if (activeStep == 3)
+                {
+                    <div style="margin-top: 10px; font-size: 0.9em; color: #ccc;">
+                        <p>De gekozen kandidaatsleutel die als officiële identifier dient. Meestal de 'id'.</p>
+                    </div>
+                }
+            </div>
+             <div style="text-align: center;">↓</div>
+            <div @onclick="@(() => ToggleStep(4))" style="cursor: pointer; border: 2px solid #06b6d4; padding: 15px; border-radius: 6px; background-color: @(activeStep == 4 ? "rgba(6, 182, 212, 0.1)" : "#1e1e1e");">
+                <strong style="color: #06b6d4">4. Alternate Key (AK)</strong>
+                @if (activeStep == 4)
+                {
+                    <div style="margin-top: 10px; font-size: 0.9em; color: #ccc;">
+                        <p>Andere kandidaatsleutels die niet als PK zijn gekozen. Krijgen UNIQUE constraint.</p>
+                        <p><em>Voorbeeld: {studentNr}, {email}</em></p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <h1>Deel 4: Relaties en Kardinaliteit</h1>
+    <p>
+        Relaties definiëren hoe entiteiten met elkaar verbonden zijn. Kardinaliteit beschrijft het aantal
+        instanties in de ene entiteit dat kan worden gerelateerd aan het aantal instanties in een andere
+        entiteit.
+    </p>
+
+    <!-- Content abbreviated for 1:N, M:N as standard markdown -->
+    <h2>4.1 Eén-op-één (1:1)</h2>
+    <p>Elke rij in Tabel A is gekoppeld aan maximaal één rij in Tabel B. FK kan in beide, meestal in de 'optionele' kant + UNIQUE constraint.</p>
+
+    <h2>4.2 Eén-op-veel (1:N)</h2>
+    <p>Mest voorkomend. FK altijd aan de 'veel'-kant (Child).</p>
+
+    <h2>4.3 Veel-op-veel (M:N)</h2>
+    <p>Vereist een <strong>Associatietabel</strong> met twee FK's.</p>
+
+    <!-- Interactieve Relatie Oplosser -->
+    <div style="background-color: #2d2d30; padding: 20px; border-radius: 8px; margin-top: 30px;">
+        <h3 style="margin-top: 0;">Interactieve Relatie Oplosser</h3>
+        <p>Kies een scenario om het 'probleem' en de 'oplossing' te zien.</p>
+        
+        <select @bind="selectedScenario" style="width: 100%; padding: 10px; margin-bottom: 20px; background-color: #1e1e1e; color: white; border: 1px solid #3e3e42; border-radius: 4px;">
+            <option value="none" disabled selected>Kies een scenario...</option>
+            <option value="1n">Scenario 1: Een 1-op-N Relatie (Klant & Bestellingen)</option>
+            <option value="nm">Scenario 2: Een N-op-M Relatie (Student & Cursus)</option>
+            <option value="recursive">Scenario 3: Een Recursieve Relatie (Werknemer & Manager)</option>
+        </select>
+
+        @if (selectedScenario != "none")
+        {
+            <div style="background-color: #1e1e1e; padding: 15px; border-radius: 6px; margin-top: 10px;">
+                @GetScenarioContent()
+            </div>
+        }
+    </div>
+
+    <h1>Deel 5: Integriteit en Constraints</h1>
+    <p>Constraints (beperkingen) garanderen datakwaliteit.</p>
+
+    <h2>5.1 NULL vs NOT NULL</h2>
+    <ul>
+        <li><strong>NULL (NA):</strong> Mag leeg zijn.</li>
+        <li><strong>NOT NULL (NNA):</strong> Moet ingevuld zijn.</li>
+    </ul>
+
+    <h2>5.2 On Delete Specificaties</h2>
+     <ul>
+        <li><strong>RESTRICT:</strong> Blokkeer verwijderen van ouder als er kinderen zijn. (Veiligst)</li>
+        <li><strong>CASCADE:</strong> Verwijder kinderen automatisch mee. (Gevaarlijk maar handig voor onderdelen)</li>
+        <li><strong>SET NULL:</strong> Maak FK van kinderen NULL. (Afdeling zonder manager)</li>
+    </ul>
+
+    <!-- Constraint Builder -->
+    <div style="background-color: #2d2d30; padding: 20px; border-radius: 8px; margin-top: 30px;">
+        <h3 style="margin-top: 0;">Constraint Builder</h3>
+        <p>Genereer SQL constraints.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <input @bind="constraintTable" placeholder="Tabel bv. Klant" style="padding: 10px; background: #1e1e1e; color: white; border: 1px solid #3e3e42;"/>
+            <input @bind="constraintCol" placeholder="Kolom bv. email" style="padding: 10px; background: #1e1e1e; color: white; border: 1px solid #3e3e42;"/>
+        </div>
+        <select @bind="constraintType" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1e1e1e; color: white; border: 1px solid #3e3e42;">
+            <option value="unique">UNIQUE</option>
+            <option value="check">CHECK</option>
+            <option value="default">DEFAULT</option>
+        </select>
+        <input @bind="constraintVal" placeholder="Waarde bv. > 0" style="width: 100%; padding: 10px; margin-bottom: 15px; background: #1e1e1e; color: white; border: 1px solid #3e3e42;"/>
+        
+        <div style="background: #1e1e1e; padding: 15px; font-family: monospace; color: #a7f3d0; border-radius: 4px;">
+            @GetConstraintSQL()
+        </div>
+    </div>
+
+    <h1>Deel 6: SQL Implementatie Volgorde</h1>
+    <p>Top-down voor creatie, Bottom-up voor verwijdering.</p>
+
+    <!-- SQL Order List Simulator -->
+    <div style="background-color: #2d2d30; padding: 20px; border-radius: 8px; margin-top: 30px;">
+        <h3 style="margin-top: 0;">SQL Volgorde Simulator</h3>
+        <p>Zet de tabellen in de juiste CREATE volgorde (Parent eerst, dan Child).</p>
+        <p><em>Gebruik de knoppen om te verplaatsen.</em></p>
+
+        <ul style="list-style: none; padding: 0;">
+            @foreach (var table in orderTables)
+            {
+                <li style="background: #1e1e1e; padding: 10px; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>@table</span>
+                    <div>
+                        <button @onclick="@(() => MoveUp(table))" style="padding: 2px 8px; background: #3e3e42; color: white; border: none; cursor: pointer;">↑</button>
+                        <button @onclick="@(() => MoveDown(table))" style="padding: 2px 8px; background: #3e3e42; color: white; border: none; cursor: pointer;">↓</button>
+                    </div>
+                </li>
+            }
+        </ul>
+        
+        <button @onclick="CheckOrder" class="btn btn-primary" style="margin-top: 10px;">Valideer</button>
+        
+        @if (!string.IsNullOrEmpty(orderFeedback))
+        {
+            <div style="margin-top: 10px; color: @(orderSuccess ? "#10b981" : "#ef4444")">
+                @orderFeedback
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    // Key Hierarchy
+    private int activeStep = 0;
+    private void ToggleStep(int step) => activeStep = (activeStep == step) ? 0 : step;
+
+    // Relations
+    private string selectedScenario = "none";
+    private RenderFragment GetScenarioContent()
+    {
+        switch (selectedScenario)
+        {
+            case "1n": return @<p><strong>Oplossing 1:N:</strong> Plaats FK `KlantID` in tabel `Bestelling` (de veel-kant).</p>;
+            case "nm": return @<p><strong>Oplossing M:N:</strong> Maak een associatietabel `StudentCursus` met FKs naar `Student` en `Cursus`.</p>;
+            case "recursive": return @<p><strong>Oplossing Recursief:</strong> FK `ManagerID` in `Werknemer` tabel wijst naar `WerknemerID`.</p>;
+            default: return @<p></p>;
+        }
+    }
+
+    // Constraints
+    private string constraintTable = "Klant";
+    private string constraintCol = "email";
+    private string constraintType = "unique";
+    private string constraintVal = "";
+    
+    private string GetConstraintSQL()
+    {
+        switch (constraintType)
+        {
+            case "unique": return $"ALTER TABLE {constraintTable} ADD CONSTRAINT UQ_{constraintTable}_{constraintCol} UNIQUE ({constraintCol});";
+            case "check": return $"ALTER TABLE {constraintTable} ADD CONSTRAINT CK_{constraintTable}_{constraintCol} CHECK ({constraintCol} {constraintVal});";
+            case "default": return $"ALTER TABLE {constraintTable} ALTER COLUMN {constraintCol} SET DEFAULT '{constraintVal}';";
+            default: return "";
+        }
+    }
+
+    // SQL Order
+    private List<string> orderTables = new List<string> { "Bestelling (Child)", "BestelRegel (Associatie)", "Klant (Parent)" };
+    private string orderFeedback = "";
+    private bool orderSuccess = false;
+
+    private void MoveUp(string item)
+    {
+        int idx = orderTables.IndexOf(item);
+        if (idx > 0)
+        {
+            orderTables.RemoveAt(idx);
+            orderTables.Insert(idx - 1, item);
+            orderFeedback = "";
+        }
+    }
+
+    private void MoveDown(string item)
+    {
+        int idx = orderTables.IndexOf(item);
+        if (idx < orderTables.Count - 1)
+        {
+            orderTables.RemoveAt(idx);
+            orderTables.Insert(idx + 1, item);
+            orderFeedback = "";
+        }
+    }
+
+    private void CheckOrder()
+    {
+        // Correct order: Klant (Parent), Bestelling (Child), BestelRegel (Assoc)
+        if (orderTables[0].Contains("Klant") && orderTables[1].Contains("Bestelling") && orderTables[2].Contains("BestelRegel"))
+        {
+            orderSuccess = true;
+            orderFeedback = "✅ Correct! Eerst Parent, dan Child, dan Associatie.";
+        }
+        else
+        {
+            orderSuccess = false;
+            orderFeedback = "❌ Fout. Probeer opnieuw: Parent eerst, dan Child.";
+        }
+    }
+}
+
+<style>
+    .btn { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .btn-primary { background-color: #0d9488; color: white; }
+</style>

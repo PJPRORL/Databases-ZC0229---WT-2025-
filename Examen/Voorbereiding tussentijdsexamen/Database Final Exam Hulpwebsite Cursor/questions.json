@@ -1,0 +1,239 @@
+{
+  "questions": [
+    { "id": "d1-q-001", "chapterId": "deel-1", "type": "single", "prompt": "Welke eigenschap hoort bij relationele tabellen?", "choices": [
+      {"id":"a","text":"Rijvolgorde bepaalt de betekenis","correct":false},
+      {"id":"b","text":"Kolomvolgorde is onbelangrijk","correct":true}
+    ], "explanation":"De volgorde van rijen en kolommen is niet bepalend.", "reference":{"anchorId":"volledige-tekst-1-2","excerpt":"De volgorde van de rijen in een tabel is onbelangrijk."}},
+    { "id": "d1-q-002", "chapterId": "deel-1", "type": "text", "prompt": "Hoe noemen we een tabel in het relationele model? (één woord)", "answerPattern":"^relatie$", "explanation":"Een tabel heet een 'relatie'.", "reference":{"anchorId":"volledige-tekst-1-2","excerpt":"… relationele model … tabellen (relaties) …"}},
+    { "id": "d1-q-003", "chapterId": "deel-1", "type": "multi", "prompt": "Kruis de juiste uitspraken aan:", "choices": [
+      {"id":"a","text":"Data zijn ruwe feiten","correct":true},
+      {"id":"b","text":"Informatie is geïnterpreteerde data","correct":true},
+      {"id":"c","text":"Data is altijd betekenisvol","correct":false}
+    ], "explanation":"Data → ruwe feiten; informatie → data met context.", "reference":{"anchorId":"volledige-tekst-1-1","excerpt":"Data … ruwe feiten. Informatie … geïnterpreteerde data."}},
+    { "id": "d1-q-004", "chapterId": "deel-1", "type": "single", "prompt": "Een cel (rij x kolom) bevat …", "choices": [
+      {"id":"a","text":"Meerdere waarden","correct":false},
+      {"id":"b","text":"Exact één atomische waarde","correct":true}
+    ], "explanation":"Atomisch: één waarde per kruising van rij en kolom.", "reference":{"anchorId":"volledige-tekst-1-2","excerpt":"De kruising … kan maar één waarde bevatten (atomische waarden)."}},
+
+    { "id": "d2-q-001", "chapterId": "deel-2", "type": "single", "prompt": "Wat is toegestaan in een Conceptueel Model (CDM)?", "choices": [
+      {"id":"a","text":"M:N relaties","correct":true},
+      {"id":"b","text":"Specifieke DBMS-datatypes","correct":false}
+    ], "explanation":"In CDM kun je M:N gebruiken; technische details niet.", "reference":{"anchorId":"volledige-tekst-1-3","excerpt":"M:N … toegestaan in CDM."}},
+    { "id": "d2-q-002", "chapterId": "deel-2", "type": "multi", "prompt": "Welke horen bij het Logisch Model (LDM)? (meerdere)", "choices": [
+      {"id":"a","text":"PK/FK notatie","correct":true},
+      {"id":"b","text":"Fysieke indexen en partities","correct":false},
+      {"id":"c","text":"Generieke datatypes (int/date)","correct":true}
+    ], "explanation":"LDM bevat PK/FK en generieke types; fysieke zaken horen in PDM.", "reference":{"anchorId":"volledige-tekst-1-3","excerpt":"LDM … PK/FK … generieke datatypes."}},
+    { "id": "d2-q-003", "chapterId": "deel-2", "type": "text", "prompt": "Normalisatie reduceert vooral … (één woord)", "answerPattern":"^redundan", "explanation":"Normalisatie reduceert redundantie.", "reference":{"anchorId":"volledige-tekst-1-3","excerpt":"… normalisatie … redundantie …"}},
+
+    { "id": "d3-q-001", "chapterId": "deel-3", "type": "multi", "prompt": "Kruis alle eigenschappen van een PK aan:", "choices": [
+      {"id":"a","text":"Uniek","correct":true},
+      {"id":"b","text":"Mag NULL zijn","correct":false},
+      {"id":"c","text":"Identificeert rij","correct":true}
+    ], "explanation":"PK is uniek, niet-NULL en identificeert de rij.", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… prima ire sleutel …"}},
+    { "id": "d3-q-002", "chapterId": "deel-3", "type": "single", "prompt": "Wat is een Alternatieve Sleutel (AK)?", "choices": [
+      {"id":"a","text":"Een kandidaat-sleutel die niet als PK is gekozen","correct":true},
+      {"id":"b","text":"Een willekeurige FK","correct":false}
+    ], "explanation":"AK is een kandidaat-sleutel die geen PK is.", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… alternatieve sleutel …"}},
+    { "id": "d3-q-003", "chapterId": "deel-3", "type": "single", "prompt": "Wat is een surrogaat sleutel?", "choices": [
+      {"id":"a","text":"Kunstmatige sleutel gegenereerd door systeem","correct":true},
+      {"id":"b","text":"Natuurlijke sleutel vanuit de business","correct":false}
+    ], "explanation":"Surrogaat = kunstmatig (bv. IDENTITY/UUID).", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… surrogaat …"}},
+
+    { "id": "d4-q-001", "chapterId": "deel-4", "type": "single", "prompt": "Waar staat de FK bij 1:N?", "choices": [
+      {"id":"a","text":"Aan de 1-kant","correct":false},
+      {"id":"b","text":"Aan de N-kant","correct":true}
+    ], "explanation":"FK aan de 'veel'-kant.", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… FK … 1:N …"}},
+    { "id": "d4-q-002", "chapterId": "deel-4", "type": "text", "prompt": "Hoe los je een M:N relatie op? (één woord)", "answerPattern":"^associatie|associatietabel|tussentabel$", "explanation":"Associatietabel met twee 1:N relaties.", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… M:N → associatietabel …"}},
+
+    { "id": "d5-q-001", "chapterId": "deel-5", "type": "single", "prompt": "Wat betekent NNA bij een attribuut?", "choices": [
+      {"id":"a","text":"Null Not Allowed","correct":true},
+      {"id":"b","text":"Null Now Allowed","correct":false}
+    ], "explanation":"NNA = Null Not Allowed.", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… NA/NNA …"}},
+    { "id": "d5-q-002", "chapterId": "deel-5", "type": "single", "prompt": "Welke ON DELETE actie verwijdert children?", "choices": [
+      {"id":"a","text":"DTR (Restrict)","correct":false},
+      {"id":"b","text":"DTC (Cascade)","correct":true},
+      {"id":"c","text":"DTN (Set Null)","correct":false}
+    ], "explanation":"Cascade verwijdert automatisch child-rijen.", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… ON DELETE …"}},
+
+    { "id": "d6-q-001", "chapterId": "deel-6", "type": "single", "prompt": "Wat creëer je eerst in correcte SQL-orde?", "choices": [
+      {"id":"a","text":"Tabellen zonder FK","correct":true},
+      {"id":"b","text":"Foreign Keys","correct":false}
+    ], "explanation":"Eerst tabellen, dan constraints (FK).", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… volgorde …"}},
+    { "id": "d6-q-002", "chapterId": "deel-6", "type": "text", "prompt": "Hoe noem je het verwijderen van child-rijen automatisch? (één woord)", "answerPattern":"^cascade$", "explanation":"Dat is 'cascade'.", "reference":{"anchorId":"volledige-tekst-…","excerpt":"… ON DELETE CASCADE …"}},
+
+    { "id": "sql-h3-q-001", "chapterId": "sql-hoofdstuk-3", "type": "single", "prompt": "Welk datatype gebruik je voor exacte decimale getallen met 2 decimalen?", "choices": [
+      {"id":"a","text":"FLOAT","correct":false},
+      {"id":"b","text":"DECIMAL(10,2)","correct":true},
+      {"id":"c","text":"INTEGER","correct":false}
+    ], "explanation":"DECIMAL(p,s) geeft exacte precisie: p = totaal aantal cijfers, s = aantal decimalen. FLOAT is benaderd, INTEGER heeft geen decimalen."},
+    { "id": "sql-h3-q-002", "chapterId": "sql-hoofdstuk-3", "type": "multi", "prompt": "Welke zijn geldige string datatypes in SQL? (meerdere)", "choices": [
+      {"id":"a","text":"VARCHAR(n)","correct":true},
+      {"id":"b","text":"CHAR(n)","correct":true},
+      {"id":"c","text":"STRING(n)","correct":false}
+    ], "explanation":"VARCHAR en CHAR zijn standaard string types. STRING is geen standaard SQL type (gebruik VARCHAR of TEXT)."},
+    { "id": "sql-h3-q-003", "chapterId": "sql-hoofdstuk-3", "type": "single", "prompt": "Wat is het verschil tussen CHAR(10) en VARCHAR(10)?", "choices": [
+      {"id":"a","text":"CHAR gebruikt altijd 10 bytes, VARCHAR gebruikt alleen benodigde bytes","correct":true},
+      {"id":"b","text":"Er is geen verschil","correct":false},
+      {"id":"c","text":"CHAR kan maximaal 10 karakters, VARCHAR kan meer","correct":false}
+    ], "explanation":"CHAR heeft vaste lengte (altijd 10 bytes), VARCHAR heeft variabele lengte (alleen benodigde bytes). Gebruik CHAR voor vaste lengtes, VARCHAR voor variabele."},
+    { "id": "sql-h3-q-004", "chapterId": "sql-hoofdstuk-3", "type": "text", "prompt": "Welk datatype gebruik je voor alleen de datum zonder tijd? (één woord)", "answerPattern":"^date$", "explanation":"DATE slaat alleen de datum op (YYYY-MM-DD), zonder tijd component."},
+
+    { "id": "sql-h4-q-001", "chapterId": "sql-hoofdstuk-4", "type": "single", "prompt": "Wat is de correcte volgorde bij het aanmaken van tabellen met foreign keys?", "choices": [
+      {"id":"a","text":"Eerst parent tabellen, dan child tabellen","correct":true},
+      {"id":"b","text":"Eerst child tabellen, dan parent tabellen","correct":false},
+      {"id":"c","text":"Volgorde maakt niet uit","correct":false}
+    ], "explanation":"Parent tabellen moeten eerst bestaan voordat je foreign keys naar hen kunt verwijzen. Eerst tabellen zonder FK, dan tabellen met FK."},
+    { "id": "sql-h4-q-002", "chapterId": "sql-hoofdstuk-4", "type": "multi", "prompt": "Welke constraints kunnen op kolomniveau worden gedefinieerd? (meerdere)", "choices": [
+      {"id":"a","text":"PRIMARY KEY","correct":true},
+      {"id":"b","text":"NOT NULL","correct":true},
+      {"id":"c","text":"FOREIGN KEY","correct":true}
+    ], "explanation":"PRIMARY KEY, NOT NULL, UNIQUE, DEFAULT, CHECK en FOREIGN KEY kunnen allemaal op kolomniveau worden gedefinieerd."},
+    { "id": "sql-h4-q-003", "chapterId": "sql-hoofdstuk-4", "type": "single", "prompt": "Wat gebeurt er bij ON DELETE CASCADE?", "choices": [
+      {"id":"a","text":"Child rijen worden automatisch verwijderd wanneer parent rij wordt verwijderd","correct":true},
+      {"id":"b","text":"Parent rij kan niet worden verwijderd als er child rijen zijn","correct":false},
+      {"id":"c","text":"Child FK wordt op NULL gezet","correct":false}
+    ], "explanation":"CASCADE verwijdert automatisch alle gerelateerde child rijen wanneer de parent rij wordt verwijderd. Dit voorkomt orphan records."},
+    { "id": "sql-h4-q-004", "chapterId": "sql-hoofdstuk-4", "type": "text", "prompt": "Welk SQL commando gebruik je om een kolom toe te voegen aan een bestaande tabel? (twee woorden)", "answerPattern":"^alter table$", "explanation":"ALTER TABLE wordt gebruikt om de structuur van bestaande tabellen te wijzigen, inclusief kolommen toevoegen."},
+
+    { "id": "sql-h5-q-001", "chapterId": "sql-hoofdstuk-5", "type": "single", "prompt": "Welke operator gebruik je voor patroon matching met wildcards?", "choices": [
+      {"id":"a","text":"LIKE","correct":true},
+      {"id":"b","text":"MATCH","correct":false},
+      {"id":"c","text":"CONTAINS","correct":false}
+    ], "explanation":"LIKE wordt gebruikt voor patroon matching. % = meerdere karakters, _ = één karakter. Bijvoorbeeld: WHERE naam LIKE 'Jan%'."},
+    { "id": "sql-h5-q-002", "chapterId": "sql-hoofdstuk-5", "type": "multi", "prompt": "Welke operatoren kunnen worden gebruikt in een WHERE clause? (meerdere)", "choices": [
+      {"id":"a","text":"BETWEEN","correct":true},
+      {"id":"b","text":"IN","correct":true},
+      {"id":"c","text":"CONTAINS","correct":false}
+    ], "explanation":"BETWEEN (tussen waarden), IN (in lijst), LIKE (patroon), IS NULL, en vergelijkingsoperatoren (=, <, >, etc.) zijn geldig in WHERE."},
+    { "id": "sql-h5-q-003", "chapterId": "sql-hoofdstuk-5", "type": "single", "prompt": "Wat doet DISTINCT in een SELECT statement?", "choices": [
+      {"id":"a","text":"Verwijdert duplicaten uit het resultaat","correct":true},
+      {"id":"b","text":"Sorteert de resultaten","correct":false},
+      {"id":"c","text":"Filtert NULL waarden","correct":false}
+    ], "explanation":"DISTINCT verwijdert duplicaten en retourneert alleen unieke combinaties van de geselecteerde kolommen."},
+    { "id": "sql-h5-q-004", "chapterId": "sql-hoofdstuk-5", "type": "text", "prompt": "Hoe controleer je of een kolom NULL is in een WHERE clause? (twee woorden)", "answerPattern":"^is null$", "explanation":"Gebruik IS NULL (niet = NULL). NULL = NULL retourneert FALSE, daarom moet je IS NULL gebruiken."},
+
+    { "id": "sql-h6-q-001", "chapterId": "sql-hoofdstuk-6", "type": "single", "prompt": "Welke functie gebruik je om strings te combineren?", "choices": [
+      {"id":"a","text":"CONCAT","correct":true},
+      {"id":"b","text":"MERGE","correct":false},
+      {"id":"c","text":"JOIN","correct":false}
+    ], "explanation":"CONCAT combineert meerdere strings tot één string. Bijvoorbeeld: CONCAT(voornaam, ' ', achternaam)."},
+    { "id": "sql-h6-q-002", "chapterId": "sql-hoofdstuk-6", "type": "multi", "prompt": "Welke zijn geldige numerieke functies? (meerdere)", "choices": [
+      {"id":"a","text":"ROUND","correct":true},
+      {"id":"b","text":"FLOOR","correct":true},
+      {"id":"c","text":"SQUARE","correct":false}
+    ], "explanation":"ROUND (afronden), FLOOR (naar beneden), CEILING (naar boven), ABS (absolute waarde), POWER (macht), SQRT (wortel) zijn geldige numerieke functies."},
+    { "id": "sql-h6-q-003", "chapterId": "sql-hoofdstuk-6", "type": "single", "prompt": "Wat doet COALESCE?", "choices": [
+      {"id":"a","text":"Retourneert de eerste niet-NULL waarde uit een lijst","correct":true},
+      {"id":"b","text":"Telt het aantal NULL waarden","correct":false},
+      {"id":"c","text":"Vervangt NULL door een standaardwaarde","correct":false}
+    ], "explanation":"COALESCE retourneert de eerste niet-NULL waarde. Handig voor fallback waarden: COALESCE(email, telefoon, 'Geen contact')."},
+
+    { "id": "sql-h7-q-001", "chapterId": "sql-hoofdstuk-7", "type": "single", "prompt": "Wat is het verschil tussen INNER JOIN en LEFT JOIN?", "choices": [
+      {"id":"a","text":"INNER JOIN retourneert alleen matches, LEFT JOIN retourneert alle linker rijen","correct":true},
+      {"id":"b","text":"Er is geen verschil","correct":false},
+      {"id":"c","text":"LEFT JOIN is sneller","correct":false}
+    ], "explanation":"INNER JOIN: alleen rijen met match in beide tabellen. LEFT JOIN: alle rijen uit linker tabel, met NULL waar geen match is."},
+    { "id": "sql-h7-q-002", "chapterId": "sql-hoofdstuk-7", "type": "multi", "prompt": "Welke join types bestaan er? (meerdere)", "choices": [
+      {"id":"a","text":"INNER JOIN","correct":true},
+      {"id":"b","text":"LEFT JOIN","correct":true},
+      {"id":"c","text":"CROSS JOIN","correct":true}
+    ], "explanation":"INNER, LEFT, RIGHT, FULL OUTER en CROSS JOIN zijn allemaal geldige join types. CROSS JOIN geeft cartesisch product."},
+    { "id": "sql-h7-q-003", "chapterId": "sql-hoofdstuk-7", "type": "single", "prompt": "Wat is een self join?", "choices": [
+      {"id":"a","text":"Een tabel joinen met zichzelf","correct":true},
+      {"id":"b","text":"Een join zonder ON clause","correct":false},
+      {"id":"c","text":"Een join met 3 tabellen","correct":false}
+    ], "explanation":"Self join: een tabel joinen met zichzelf, vaak met aliassen. Handig voor hiërarchische data (bijv. werknemer-manager relaties)."},
+
+    { "id": "sql-h8-q-001", "chapterId": "sql-hoofdstuk-8", "type": "single", "prompt": "Wat is het verschil tussen WHERE en HAVING?", "choices": [
+      {"id":"a","text":"WHERE filtert rijen vóór groepering, HAVING filtert groepen ná groepering","correct":true},
+      {"id":"b","text":"Er is geen verschil","correct":false},
+      {"id":"c","text":"HAVING is ouder dan WHERE","correct":false}
+    ], "explanation":"WHERE wordt toegepast vóór GROUP BY (filtert individuele rijen). HAVING wordt toegepast ná GROUP BY (filtert groepen)."},
+    { "id": "sql-h8-q-002", "chapterId": "sql-hoofdstuk-8", "type": "multi", "prompt": "Welke zijn aggregatiefuncties? (meerdere)", "choices": [
+      {"id":"a","text":"COUNT","correct":true},
+      {"id":"b","text":"SUM","correct":true},
+      {"id":"c","text":"CONCAT","correct":false}
+    ], "explanation":"COUNT, SUM, AVG, MIN, MAX zijn aggregatiefuncties. CONCAT is een scalaire functie (werkt per rij)."},
+    { "id": "sql-h8-q-003", "chapterId": "sql-hoofdstuk-8", "type": "single", "prompt": "Wat doet COUNT(*) versus COUNT(kolom)?", "choices": [
+      {"id":"a","text":"COUNT(*) telt alle rijen, COUNT(kolom) telt alleen niet-NULL waarden","correct":true},
+      {"id":"b","text":"Er is geen verschil","correct":false},
+      {"id":"c","text":"COUNT(*) is sneller","correct":false}
+    ], "explanation":"COUNT(*) telt alle rijen inclusief NULL. COUNT(kolom) telt alleen rijen waar kolom niet NULL is."},
+
+    { "id": "sql-h9-q-001", "chapterId": "sql-hoofdstuk-9", "type": "single", "prompt": "Wat is een correlated subquery?", "choices": [
+      {"id":"a","text":"Een subquery die verwijst naar kolommen uit de outer query","correct":true},
+      {"id":"b","text":"Een subquery met meerdere WHERE clauses","correct":false},
+      {"id":"c","text":"Een subquery die altijd TRUE retourneert","correct":false}
+    ], "explanation":"Correlated subquery: de inner query verwijst naar kolommen uit de outer query. Wordt voor elke rij van de outer query uitgevoerd."},
+    { "id": "sql-h9-q-002", "chapterId": "sql-hoofdstuk-9", "type": "multi", "prompt": "Waar kunnen subqueries worden gebruikt? (meerdere)", "choices": [
+      {"id":"a","text":"In SELECT clause","correct":true},
+      {"id":"b","text":"In WHERE clause","correct":true},
+      {"id":"c","text":"In ORDER BY clause","correct":true}
+    ], "explanation":"Subqueries kunnen in SELECT, FROM, WHERE, HAVING en zelfs ORDER BY worden gebruikt, afhankelijk van het type."},
+    { "id": "sql-h9-q-003", "chapterId": "sql-hoofdstuk-9", "type": "single", "prompt": "Wanneer gebruik je EXISTS in plaats van IN?", "choices": [
+      {"id":"a","text":"EXISTS is vaak efficiënter voor grote subqueries omdat het stopt bij eerste match","correct":true},
+      {"id":"b","text":"IN is altijd beter","correct":false},
+      {"id":"c","text":"EXISTS werkt alleen met NULL waarden","correct":false}
+    ], "explanation":"EXISTS stopt bij de eerste match (kan sneller zijn). IN moet alle waarden evalueren. EXISTS is vaak beter voor grote datasets."},
+
+    { "id": "sql-h10-q-001", "chapterId": "sql-hoofdstuk-10", "type": "single", "prompt": "Wat doet ROLLUP in GROUP BY?", "choices": [
+      {"id":"a","text":"Creëert subtotalen en een totaal","correct":true},
+      {"id":"b","text":"Verwijdert duplicaten","correct":false},
+      {"id":"c","text":"Sorteert de resultaten","correct":false}
+    ], "explanation":"ROLLUP creëert hiërarchische subtotalen. Bijvoorbeeld: GROUP BY ROLLUP(jaar, maand) geeft totalen per jaar en een totaal."},
+    { "id": "sql-h10-q-002", "chapterId": "sql-hoofdstuk-10", "type": "single", "prompt": "Wat is het verschil tussen ROLLUP en CUBE?", "choices": [
+      {"id":"a","text":"CUBE creëert alle mogelijke combinaties van subtotalen, ROLLUP alleen hiërarchische","correct":true},
+      {"id":"b","text":"Er is geen verschil","correct":false},
+      {"id":"c","text":"ROLLUP is sneller","correct":false}
+    ], "explanation":"ROLLUP: hiërarchische subtotalen (A, A+B, totaal). CUBE: alle combinaties (A, B, A+B, totaal). CUBE geeft meer combinaties."},
+
+    { "id": "sql-h11-q-001", "chapterId": "sql-hoofdstuk-11", "type": "single", "prompt": "Waarom mag je niet SELECT naam gebruiken met GROUP BY klas zonder naam in GROUP BY?", "choices": [
+      {"id":"a","text":"Omdat naam niet gegroepeerd is en meerdere waarden kan hebben per groep","correct":true},
+      {"id":"b","text":"Omdat naam een reserved word is","correct":false},
+      {"id":"c","text":"Omdat GROUP BY dit niet ondersteunt","correct":false}
+    ], "explanation":"In GROUP BY moet elke geselecteerde kolom óf in GROUP BY staan óf een aggregatiefunctie zijn. Anders is het resultaat ambigu."},
+    { "id": "sql-h11-q-002", "chapterId": "sql-hoofdstuk-11", "type": "multi", "prompt": "Welke zijn best practices voor SQL performance? (meerdere)", "choices": [
+      {"id":"a","text":"Gebruik indexes op kolommen in WHERE en JOIN","correct":true},
+      {"id":"b","text":"Vermijd SELECT *","correct":true},
+      {"id":"c","text":"Gebruik altijd subqueries","correct":false}
+    ], "explanation":"Indexes versnellen queries. SELECT * haalt onnodige data op. Subqueries zijn niet altijd nodig - soms zijn joins beter."},
+
+    { "id": "sql-h12-q-001", "chapterId": "sql-hoofdstuk-12", "type": "single", "prompt": "Wat zijn window functions?", "choices": [
+      {"id":"a","text":"Functies die waarden berekenen over een set rijen zonder te groeperen","correct":true},
+      {"id":"b","text":"Functies die alleen in WHERE clauses werken","correct":false},
+      {"id":"c","text":"Functies die tabellen verwijderen","correct":false}
+    ], "explanation":"Window functions (OVER clause) berekenen waarden over rijen zonder ze te groeperen. Bijvoorbeeld: ROW_NUMBER(), RANK(), SUM() OVER()."},
+    { "id": "sql-h12-q-002", "chapterId": "sql-hoofdstuk-12", "type": "single", "prompt": "Wat is een CTE (Common Table Expression)?", "choices": [
+      {"id":"a","text":"Een tijdelijke named result set die je kunt hergebruiken in een query","correct":true},
+      {"id":"b","text":"Een type constraint","correct":false},
+      {"id":"c","text":"Een join type","correct":false}
+    ], "explanation":"CTE (WITH clause) definieert een tijdelijke named result set die je in dezelfde query kunt gebruiken. Maakt complexe queries leesbaarder."},
+    { "id": "sql-h12-q-003", "chapterId": "sql-hoofdstuk-12", "type": "single", "prompt": "Wat is het verschil tussen UNION en UNION ALL?", "choices": [
+      {"id":"a","text":"UNION verwijdert duplicaten, UNION ALL behoudt alle rijen inclusief duplicaten","correct":true},
+      {"id":"b","text":"Er is geen verschil","correct":false},
+      {"id":"c","text":"UNION ALL is sneller","correct":false}
+    ], "explanation":"UNION verwijdert duplicaten (duurder), UNION ALL behoudt alles (sneller). Gebruik UNION ALL als duplicaten geen probleem zijn."},
+
+    { "id": "sql-h13-q-001", "chapterId": "sql-hoofdstuk-13", "type": "single", "prompt": "Wat is het belangrijkste verschil tussen SQL en NoSQL databases?", "choices": [
+      {"id":"a","text":"SQL heeft een vast schema, NoSQL heeft flexibel schema","correct":true},
+      {"id":"b","text":"SQL is alleen voor kleine databases","correct":false},
+      {"id":"c","text":"NoSQL ondersteunt geen queries","correct":false}
+    ], "explanation":"SQL: gestructureerd, schema-gebonden, ACID. NoSQL: flexibel schema, horizontaal schaalbaar, BASE. Beide hebben hun use cases."},
+    { "id": "sql-h13-q-002", "chapterId": "sql-hoofdstuk-13", "type": "multi", "prompt": "Welke zijn eigenschappen van document databases? (meerdere)", "choices": [
+      {"id":"a","text":"Flexibel schema","correct":true},
+      {"id":"b","text":"Horizontaal schaalbaar","correct":true},
+      {"id":"c","text":"Altijd sneller dan SQL","correct":false}
+    ], "explanation":"Document DBs hebben flexibel schema en zijn horizontaal schaalbaar. Ze zijn niet altijd sneller - het hangt af van de use case."},
+    { "id": "sql-h13-q-003", "chapterId": "sql-hoofdstuk-13", "type": "single", "prompt": "Wat is een collection in MongoDB?", "choices": [
+      {"id":"a","text":"Vergelijkbaar met een tabel in SQL","correct":true},
+      {"id":"b","text":"Een type join","correct":false},
+      {"id":"c","text":"Een constraint","correct":false}
+    ], "explanation":"Collection in MongoDB ≈ tabel in SQL. Document ≈ rij. Field ≈ kolom. Maar met flexibele structuur per document."},
+    { "id": "sql-h13-q-004", "chapterId": "sql-hoofdstuk-13", "type": "text", "prompt": "Welke operator gebruik je in MongoDB voor 'groter dan'? (begint met $)", "answerPattern":"^\\$gt$", "explanation":"$gt staat voor 'greater than'. Bijvoorbeeld: db.collection.find({ prijs: { $gt: 100 } })."}
+  ]
+}
+
+
+
+

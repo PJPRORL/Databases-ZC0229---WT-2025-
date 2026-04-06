@@ -1,0 +1,74 @@
+@page "/chapter/{Id:int}"
+@using System.Text
+@using Markdig
+@using DatabaseStudyGuide.Pages.Chapters
+@inject HttpClient Http
+
+<div class="chapter-container">
+    @if (Id == 1)
+    {
+        <Chapter01 />
+    }
+    else if (Id == 2)
+    {
+        <Chapter02 />
+    }
+    else
+    {
+        <div class="markdown-content">
+            @if (content == null)
+            {
+                <div class="flex items-center justify-center p-10">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-700"></div>
+                </div>
+            }
+            else if (hasError)
+            {
+                 <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+                    <p class="font-bold">Error</p>
+                    <p>@errorMessage</p>
+                </div>
+            }
+            else
+            {
+                @((MarkupString)renderedHtml)
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private string? content;
+    private string renderedHtml = "";
+    private bool hasError = false;
+    private string errorMessage = "";
+    
+    private MarkdownPipeline pipeline = new MarkdownPipelineBuilder()
+        .UseAdvancedExtensions()
+        .Build();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Only load markdown for chapters > 2
+        if (Id > 2)
+        {
+            content = null;
+            hasError = false;
+            try
+            {
+                var filename = $"content/chapter{Id}.md";
+                content = await Http.GetStringAsync(filename);
+                renderedHtml = Markdown.ToHtml(content, pipeline);
+            }
+            catch (Exception ex)
+            {
+                hasError = true;
+                errorMessage = $"Could not load chapter {Id}. File not found or error reading content.";
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+}
