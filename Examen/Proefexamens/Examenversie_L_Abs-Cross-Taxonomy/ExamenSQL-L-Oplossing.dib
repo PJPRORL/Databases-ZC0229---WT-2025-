@@ -1,0 +1,193 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie L (Auteurs & Data Cross-secties)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Update de tabel `Abs.Authors`. Maak de namen schoon door de huidige kolom te updaten met de `TRIM(name)`-functie, die leading and trailing spaces verwijdert.
+
+**1.2 Data Definition Language**
+Voeg een constraint toe op de tabel `Abs.Books` genaamd `CHK_Books_Year`. Verzeker dat er geen boeken met een per ongeluk gepubliceerd jaar van ver in de toekomst in de database belanden (`publishedYear <= 2050`).
+
+#!sql-SqlServer
+
+-- 1.1 Vervanging
+UPDATE Abs.Authors
+SET name = TRIM(name);
+
+-- 1.2 Aanbrengen CK
+ALTER TABLE Abs.Books
+ADD CONSTRAINT CHK_Books_Year CHECK (publishedYear <= 2050);
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Welke auteurs hebben opvallend lange of unieke namen?
+Lees uit `Abs.Authors`. Toon de naam getrimd als `AuteurNaam` en gebruik de `LEN()` functie om de daadwerkelijke lengte (als getal, getiteld `NaamLengte`) op te halen.
+Sorteer primair dalend op the berekende naamlengte en bij gelijke lengtes op AuteurNaam oplopend. Toon top 10.
+
+**Gewenst resultaat**
+| | AuteurNaam | NaamLengte |
+|---|---|---|
+| 1 | https://images.gr-assets.com/authors/1701335791p5/47124811.jpg | 62 |
+| 2 | Damien Angelica Walters | 23 |
+| 3 | Brian Francis Slattery | 22 |
+| 4 | Gabriela Romero Lacruz | 22 |
+| 5 | Kristine Kathryn Rusch | 22 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 2
+SELECT TOP 10 
+    TRIM(name) AS AuteurNaam, 
+    LEN(name) AS NaamLengte 
+FROM Abs.Authors 
+ORDER BY NaamLengte DESC, AuteurNaam ASC;
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+We testen uitgebreide tabellen-kruisingen (Cross-Taxonomy). Bouw een query die de volgende 5 tabellen verbindt: `Books`, `BookGenres`, `Genres`, `BookTags`, `Tags`.
+- Toon de getrimde titel (`BoekTitel`), getrimd genre (`GenreNaam`) en getrimde tag (`TagNaam`).
+- Sorteer alfabetisch op BoekTitel, dan op GenreNaam en als laatste op TagNaam. Toon top 10.
+*(Door INNER JOINS op al deze tafels krijg je een zogenaamd 'Cartesisch product' van combinaties per boek).*
+
+**Gewenst resultaat (eerste 5)**
+| | BoekTitel | GenreNaam | TagNaam |
+|---|---|---|---|
+| 1 | A Blight of Blackwings | Epic | Action & Adventure |
+| 2 | A Blight of Blackwings | Epic | Epic |
+| 3 | A Blight of Blackwings | Epic | Fantasy |
+| 4 | A Blight of Blackwings | Epic | Paranormal |
+| 5 | A Blight of Blackwings | Epic | Paranormal & Urban |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 3
+SELECT TOP 10 
+    TRIM(b.title) AS BoekTitel, 
+    TRIM(g.name) AS GenreNaam, 
+    TRIM(t.name) AS TagNaam 
+FROM Abs.Books b 
+INNER JOIN Abs.BookGenres bg ON b.id = bg.bookId 
+INNER JOIN Abs.Genres g ON bg.genreId = g.id 
+INNER JOIN Abs.BookTags bt ON b.id = bt.bookId 
+INNER JOIN Abs.Tags t ON bt.tagId = t.id 
+ORDER BY b.title ASC, g.name ASC, t.name ASC;
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Analyseer de diversiteit van auteurs binnen de verschillende genres.
+Verbind `Genres`, `BookGenres`, `Books`, `BookAuthors` en `Authors`.
+- Groepeer op de genre naam (getrimd als `GenreNaam`).
+- Hoeveel unieke auteurs vind je binnen zo'n genre? Gebruik hiervoor de specifieke code: `COUNT(DISTINCT a.id)` (noem dit `AantalUniekeAuteurs`).
+- Plaats een logische `HAVING` filter zodat je enkel de genres toont met *meer dan 10* unieke auteurs.
+- Sorteer dalend op the aantal. Toon top 10.
+
+**Gewenst resultaat**
+| | GenreNaam | AantalUniekeAuteurs |
+|---|---|---|
+| 1 | Fantasy | 264 |
+| 2 | Epic | 123 |
+| 3 | Fiction | 91 |
+| 4 | Action & Adventure | 81 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 4
+SELECT TOP 10
+    TRIM(g.name) AS GenreNaam, 
+    COUNT(DISTINCT a.id) AS AantalUniekeAuteurs 
+FROM Abs.Genres g 
+INNER JOIN Abs.BookGenres bg ON g.id = bg.genreId 
+INNER JOIN Abs.Books b ON bg.bookId = b.id 
+INNER JOIN Abs.BookAuthors ba ON b.id = ba.bookId 
+INNER JOIN Abs.Authors a ON ba.authorId = a.id 
+GROUP BY g.name 
+HAVING COUNT(DISTINCT a.id) > 10 
+ORDER BY AantalUniekeAuteurs DESC;
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Wat is het langste boek binnen het populairste genre?
+Schrijf een geneste subquery via `duration` in `Abs.Books`: Toon the `DISTINCT` `BoekTitel` waarbij de `duration` gelijk is aan de absolute MAXIMUM `duration` (langste looptijd) van een boek dat gekoppeld is (via `BookGenres`) aan het genre (`Abs.Genres`) met de exacte naam 'Fantasy'.
+
+**Gewenst resultaat**
+| | BoekTitel |
+|---|---|
+| 1 | Wind and Truth |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 5
+SELECT DISTINCT
+    TRIM(b.title) AS BoekTitel
+FROM Abs.Books b
+WHERE b.duration = (
+    SELECT MAX(b2.duration) 
+    FROM Abs.Books b2 
+    INNER JOIN Abs.BookGenres bg2 ON b2.id = bg2.bookId 
+    INNER JOIN Abs.Genres g2 ON bg2.genreId = g2.id 
+    WHERE g2.name = 'Fantasy'
+);
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Wat zijn de 5 laatst geregistreerde Engelstalige boeken (`language = 'English'`) op het platform op basis van `createdAt` in `Abs.Books`?
+Selecteer de `title` en formatteer `createdAt` (als `GecreeerdOp`) naar het patroon 'yyyy/MM/dd HH:mm'.
+Sorteer van nieuwste (meest recent) naar oudste.
+
+**Gewenst resultaat**
+| | BoekTitel | GecreeerdOp |
+|---|---|---|
+| 1 | Isles of the Emberdark | 2025/07/01 18:28 |
+| 2 | The Pilot | 2025/07/01 15:24 |
+| 3 | Heart of the Wyrdwood | 2025/06/27 08:04 |
+| 4 | The Last Smile in Sunder City | 2025/06/25 09:46 |
+| 5 | The Burial Witch | 2025/06/25 09:30 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 6
+SELECT TOP 5 
+    TRIM(title) AS BoekTitel, 
+    FORMAT(createdAt, 'yyyy/MM/dd HH:mm') AS GecreeerdOp 
+FROM Abs.Books 
+WHERE language = 'English' 
+ORDER BY createdAt DESC;
+

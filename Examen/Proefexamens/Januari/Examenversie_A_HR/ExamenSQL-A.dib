@@ -1,0 +1,123 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=Databases;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown\n\n# Examen SQL - Versie A (HR Datamodel)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Update de tabel `Werknemer` in het `HR` schema. Voeg achter elk `email` adres de tekst `@hr.com` toe, maar zorg dat dit enkel gebeurt als het e-mailadres nog geen `@` bevat.
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `Werknemer` zodat geen twee medewerkers exact hetzelfde `email` adres kunnen hebben. Noem de constraint `AK_email_Werknemer`.\n\n#!sql-SqlServer\n\n-- Vul hier je oplossing in\n\n\n#!markdown\n\n### Vraag 2 (8 punten)
+Selecteer werknemers die in dienst kwamen ná 1 januari 1995, een telefoonnummer hebben dat start met `011`, en een salaris verdienen dat hoger is dan 5000.
+Geef in je overzicht:
+- Een kolom `VolledigeNaam` waarin de `voornaam` en `naam` staan samengevoegd (met een spatie ertussen), waarbij de familienaam volledig in hoofdletters staat.
+- Een kolom `Aanwervingsdatum` (gebaseerd op `huurDatum`) in het formaat `dd-MM-yyyy`.
+- Het `telefoonnummer`, waarbij alle punten (`.`) vervangen zijn door streepjes (`-`).
+
+Toon enkel de eerste 10 resultaten.
+
+**Gewenst resultaat (eerste 10)**
+| | VolledigeNaam | Aanwervingsdatum | telefoonnummer |
+|---|---|---|---|
+| 1 | John RUSSELL | 01-10-1996 | 011-44-1344-429268 |
+| 2 | Karen PARTNERS | 05-01-1997 | 011-44-1344-467268 |
+| 3 | Alberto ERRAZURIZ | 10-03-1997 | 011-44-1344-429278 |
+| 4 | Gerald CAMBRAULT | 15-10-1999 | 011-44-1344-619268 |
+| 5 | Eleni ZLOTKEY | 29-01-2000 | 011-44-1344-429018 |
+| 6 | Peter TUCKER | 30-01-1997 | 011-44-1344-129268 |
+| 7 | David BERNSTEIN | 24-03-1997 | 011-44-1344-345268 |
+| 8 | Peter HALL | 20-08-1997 | 011-44-1344-478968 |
+| 9 | Christopher OLSEN | 30-03-1998 | 011-44-1344-498718 |
+| 10 | Nanette CAMBRAULT | 09-12-1998 | 011-44-1344-987668 |\n\n#!sql-SqlServer\n\n-- Vul hier je oplossing in\n\n\n#!markdown\n\n### Vraag 3 (9 punten)
+Toon van de werknemers de familienaam (`naam`), de departement-naam (alias `Departement`), en de functietitel (`titel` als `JobTitel`).
+Creëer ook een extra categorie-kolom genaamd `LoonCategorie` gebaseerd op het salaris:
+- Lager dan 5000: `Junior Loon`
+- Vanaf 5000 tot net geen 10000: `Medior Loon`
+- Vanaf 10000 tot net geen 15000: `Senior Loon`
+- Vanaf 15000: `Executive Loon`
+
+Sorteer de werknemers van hoog naar laag salaris. Toon de TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | naam | Departement | JobTitel | LoonCategorie |
+|---|---|---|---|---|
+| 1 | King | Executive | President | Executive Loon |
+| 2 | Kochhar | Executive | Administration Vice President | Executive Loon |
+| 3 | De Haan | Executive | Administration Vice President | Executive Loon |
+| 4 | Russell | Sales | Sales Manager | Senior Loon |
+| 5 | Partners | Sales | Sales Manager | Senior Loon |
+| 6 | Hartstein | Marketing | Marketing Manager | Senior Loon |
+| 7 | Higgins | Accounting | Accounting Manager | Senior Loon |
+| 8 | Errazuriz | Sales | Sales Manager | Senior Loon |
+| 9 | Greenberg | Finance | Finance Manager | Senior Loon |
+| 10 | Ozer | Sales | Sales Representative | Senior Loon |\n\n#!sql-SqlServer\n\n-- Vul hier je oplossing in\n\n\n#!markdown\n\n### Vraag 4 (9 punten)
+Geef per Departement (naam) hoeveel werknemers er in dat departement werken (alias `AantalWerknemers`) en wat de som van al hun salarissen is (alias `TotaleLoonkost`). Zorg dat de naam van het departement getoond wordt onder `DepartementNaam`.
+Filter enkel de departementen met `locatieId` 1700 of 1800.
+**Let op**: Departementen zonder werknemers moeten ook getoond worden (met een TotaleLoonkost van 0, en niet NULL!). Sorteer dalend op het aantal werknemers.
+
+Toon de TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | DepartementNaam | AantalWerknemers | TotaleLoonkost |
+|---|---|---|---|
+| 1 | Finance | 6 | 51600.0000 |
+| 2 | Purchasing | 6 | 24900.0000 |
+| 3 | Executive | 3 | 58000.0000 |
+| 4 | Accounting | 2 | 20300.0000 |
+| 5 | Marketing | 2 | 19000.0000 |
+| 6 | Administration | 1 | 4400.0000 |
+| 7 | IT Helpdesk | 0 | .0000 |
+| 8 | Government Sales | 0 | .0000 |
+| 9 | Corporate Tax | 0 | .0000 |
+| 10 | Control And Credit | 0 | .0000 |\n\n#!sql-SqlServer\n\n-- Vul hier je oplossing in\n\n\n#!markdown\n\n### Vraag 5 (8 punten)
+We zijn op zoek naar werknemers wiens `salaris` exact overeenkomt met de laagste verdiener binnen hun specifieke job-categorie (`jobId`). 
+Toon de achternaam, voornaam, het salaris en de geformatteerde huurDatum (`Datum` als `dd/MM/yyyy`).
+Filter de dataset enkel op medewerkers uit `departementId` 50 of 80 die zijn aangenomen op of ná 1 januari 1996.
+Sorteer het resultaat op salaris (oplopend).
+
+**Gewenst resultaat**
+| | naam | voornaam | salaris | Datum |
+|---|---|---|---|---|
+| 1 | Olson | TJ | 2100.0000 | 10/04/1999 |
+| 2 | Sullivan | Martha | 2500.0000 | 21/06/1999 |
+| 3 | Perkins | Randall | 2500.0000 | 19/12/1999 |
+| 4 | Mour , s | Kevin | 5800.0000 | 16/11/1999 |
+| 5 | Kumar | Sundita | 6100.0000 | 21/04/2000 |
+| 6 | Zlotkey | Eleni | 10500.0000 | 29/01/2000 |\n\n#!sql-SqlServer\n\n-- Vul hier je oplossing in\n\n\n#!markdown\n\n### Vraag 6 (4 punten)
+Haal uit de `JobGeschiedenis` (met informatie over functies uit het verleden) de top 5 langst uitgeoefende functies. Toon de achternaam (`naam`) van de werknemer, de functietitel (`titel` als `JobTitel`), en bereken hoeveel dagen ze de functie uitoefenden (`DagenInFunctie`).
+Beperk tot functies die vóór het jaar 2000 beëindigd werden (`einddatum`).
+Sorteer aflopend op het aantal dagen in de functie.
+
+**Gewenst resultaat (eerste 5)**
+| | naam | JobTitel | DagenInFunctie |
+|---|---|---|---|
+| 1 | Whalen | Administration Assistant | 2100 |
+| 2 | De Haan | Programmer | 2018 |
+| 3 | Whalen | Public Accountant | 1644 |
+| 4 | Kochhar | Public Accountant | 1497 |
+| 5 | Hartstein | Marketing Representative | 1401 |\n\n#!sql-SqlServer\n\n-- Vul hier je oplossing in\n\n\n

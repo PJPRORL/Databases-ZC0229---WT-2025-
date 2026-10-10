@@ -1,0 +1,474 @@
+<mxfile host="Electron">
+  <diagram name="Oefening 3 Tandartsenpraktijk" id="fY4f2QrUsMp_aoLhDpQz">
+    <mxGraphModel dx="851" dy="596" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-1" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" value="Patient" vertex="1">
+          <mxGeometry height="190" width="170" x="30" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-2" parent="pIOx2xGsK_FuBb8WOt-R-1" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=1;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="170" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-3" parent="pIOx2xGsK_FuBb8WOt-R-2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;" value="PK" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-4" parent="pIOx2xGsK_FuBb8WOt-R-2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;" value="id: int {NNA}" vertex="1">
+          <mxGeometry height="30" width="140" x="30" as="geometry">
+            <mxRectangle height="30" width="140" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-5" parent="pIOx2xGsK_FuBb8WOt-R-1" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="170" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-6" parent="pIOx2xGsK_FuBb8WOt-R-5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-7" parent="pIOx2xGsK_FuBb8WOt-R-5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="voornaam: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="140" x="30" as="geometry">
+            <mxRectangle height="30" width="140" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-8" parent="pIOx2xGsK_FuBb8WOt-R-1" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="170" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-9" parent="pIOx2xGsK_FuBb8WOt-R-8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-10" parent="pIOx2xGsK_FuBb8WOt-R-8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="naam: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="140" x="30" as="geometry">
+            <mxRectangle height="30" width="140" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-11" parent="pIOx2xGsK_FuBb8WOt-R-1" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="170" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-12" parent="pIOx2xGsK_FuBb8WOt-R-11" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-13" parent="pIOx2xGsK_FuBb8WOt-R-11" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="email: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="140" x="30" as="geometry">
+            <mxRectangle height="30" width="140" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-14" parent="pIOx2xGsK_FuBb8WOt-R-1" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="170" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-15" parent="pIOx2xGsK_FuBb8WOt-R-14" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-16" parent="pIOx2xGsK_FuBb8WOt-R-14" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="telefoon: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="140" x="30" as="geometry">
+            <mxRectangle height="30" width="140" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-17" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" value="Dokter" vertex="1">
+          <mxGeometry height="160" width="180" x="570" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-18" parent="pIOx2xGsK_FuBb8WOt-R-17" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=1;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="180" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-19" parent="pIOx2xGsK_FuBb8WOt-R-18" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;" value="PK" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-20" parent="pIOx2xGsK_FuBb8WOt-R-18" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;" value="id: int {NNA}" vertex="1">
+          <mxGeometry height="30" width="150" x="30" as="geometry">
+            <mxRectangle height="30" width="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-21" parent="pIOx2xGsK_FuBb8WOt-R-17" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="180" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-22" parent="pIOx2xGsK_FuBb8WOt-R-21" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-23" parent="pIOx2xGsK_FuBb8WOt-R-21" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="naam: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="150" x="30" as="geometry">
+            <mxRectangle height="30" width="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-24" parent="pIOx2xGsK_FuBb8WOt-R-17" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="180" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-25" parent="pIOx2xGsK_FuBb8WOt-R-24" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-26" parent="pIOx2xGsK_FuBb8WOt-R-24" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="voornaam: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="150" x="30" as="geometry">
+            <mxRectangle height="30" width="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-27" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" value="Behandeling" vertex="1">
+          <mxGeometry height="190" width="240" x="250" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-28" parent="pIOx2xGsK_FuBb8WOt-R-27" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=1;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="240" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-29" parent="pIOx2xGsK_FuBb8WOt-R-28" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;" value="PK" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-30" parent="pIOx2xGsK_FuBb8WOt-R-28" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;" value="id: int {NNA}" vertex="1">
+          <mxGeometry height="30" width="210" x="30" as="geometry">
+            <mxRectangle height="30" width="210" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-31" parent="pIOx2xGsK_FuBb8WOt-R-27" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="240" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-32" parent="pIOx2xGsK_FuBb8WOt-R-31" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-33" parent="pIOx2xGsK_FuBb8WOt-R-31" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="naam: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="210" x="30" as="geometry">
+            <mxRectangle height="30" width="210" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-34" parent="pIOx2xGsK_FuBb8WOt-R-27" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-35" parent="pIOx2xGsK_FuBb8WOt-R-34" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-36" parent="pIOx2xGsK_FuBb8WOt-R-34" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="prijs: float {NNA}" vertex="1">
+          <mxGeometry height="30" width="210" x="30" as="geometry">
+            <mxRectangle height="30" width="210" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-37" parent="pIOx2xGsK_FuBb8WOt-R-27" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="240" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-38" parent="pIOx2xGsK_FuBb8WOt-R-37" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-39" parent="pIOx2xGsK_FuBb8WOt-R-37" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="beschrijving: string {NNA}" vertex="1">
+          <mxGeometry height="30" width="210" x="30" as="geometry">
+            <mxRectangle height="30" width="210" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-40" parent="pIOx2xGsK_FuBb8WOt-R-27" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" value="" vertex="1">
+          <mxGeometry height="30" width="240" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-41" parent="pIOx2xGsK_FuBb8WOt-R-40" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-42" parent="pIOx2xGsK_FuBb8WOt-R-40" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="specialisatie: Specialisatie {NA}" vertex="1">
+          <mxGeometry height="30" width="210" x="30" as="geometry">
+            <mxRectangle height="30" width="210" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-43" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" value="Bezoek" vertex="1">
+          <mxGeometry height="160" width="180" x="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-44" parent="pIOx2xGsK_FuBb8WOt-R-43" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=1;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="180" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-45" parent="pIOx2xGsK_FuBb8WOt-R-44" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;" value="PK" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-46" parent="pIOx2xGsK_FuBb8WOt-R-44" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;" value="id: int {NNA}" vertex="1">
+          <mxGeometry height="30" width="150" x="30" as="geometry">
+            <mxRectangle height="30" width="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-47" parent="pIOx2xGsK_FuBb8WOt-R-43" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="180" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-48" parent="pIOx2xGsK_FuBb8WOt-R-47" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-49" parent="pIOx2xGsK_FuBb8WOt-R-47" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="datum: date {NNA}" vertex="1">
+          <mxGeometry height="30" width="150" x="30" as="geometry">
+            <mxRectangle height="30" width="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-50" parent="pIOx2xGsK_FuBb8WOt-R-43" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="180" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-51" parent="pIOx2xGsK_FuBb8WOt-R-50" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=0;overflow=hidden;" value="FK1" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-52" parent="pIOx2xGsK_FuBb8WOt-R-50" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;" value="patientId: int {NNA, DTR}" vertex="1">
+          <mxGeometry height="30" width="150" x="30" as="geometry">
+            <mxRectangle height="30" width="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-53" parent="pIOx2xGsK_FuBb8WOt-R-43" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="180" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-54" parent="pIOx2xGsK_FuBb8WOt-R-53" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=0;overflow=hidden;" value="FK2" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-55" parent="pIOx2xGsK_FuBb8WOt-R-53" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;overflow=hidden;" value="dokterId: int {NNA, DTR}" vertex="1">
+          <mxGeometry height="30" width="150" x="30" as="geometry">
+            <mxRectangle height="30" width="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-56" edge="1" parent="1" source="pIOx2xGsK_FuBb8WOt-R-43" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="pIOx2xGsK_FuBb8WOt-R-78" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="400" y="230" />
+              <mxPoint x="400" y="315" />
+            </Array>
+            <mxPoint x="500" y="440" as="sourcePoint" />
+            <mxPoint x="290" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-57" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="R3" vertex="1">
+          <mxGeometry relative="1" x="-0.2952" y="-3" as="geometry">
+            <mxPoint x="-7" y="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-58" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.8048" y="1" as="geometry">
+            <mxPoint x="-8" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-59" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1..1" vertex="1">
+          <mxGeometry relative="1" x="-0.8095" as="geometry">
+            <mxPoint x="-20" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-60" edge="1" parent="1" source="pIOx2xGsK_FuBb8WOt-R-2" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="pIOx2xGsK_FuBb8WOt-R-50" value="R1">
+          <mxGeometry relative="1" x="0.0556" y="-20" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="250" y="75" />
+              <mxPoint x="250" y="135" />
+              <mxPoint x="290" y="135" />
+            </Array>
+            <mxPoint x="120" y="330" as="sourcePoint" />
+            <mxPoint x="310" y="135" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-61" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-60" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.6386" y="1" as="geometry">
+            <mxPoint x="18" y="16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-62" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-60" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1..1" vertex="1">
+          <mxGeometry relative="1" x="-0.9106" as="geometry">
+            <mxPoint x="12" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-63" edge="1" parent="1" source="pIOx2xGsK_FuBb8WOt-R-53" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="pIOx2xGsK_FuBb8WOt-R-18" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="165" />
+              <mxPoint x="520" y="75" />
+            </Array>
+            <mxPoint x="470" y="135" as="sourcePoint" />
+            <mxPoint x="640" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-64" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-63" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="R2" vertex="1">
+          <mxGeometry relative="1" x="0.1669" as="geometry">
+            <mxPoint x="-10" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-65" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-63" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.8744" y="-1" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-66" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-63" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1..1" vertex="1">
+          <mxGeometry relative="1" x="0.8317" y="2" as="geometry">
+            <mxPoint y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-67" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" value="DokterSpecialisatie" vertex="1">
+          <mxGeometry height="130" width="250" x="450" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-68" parent="pIOx2xGsK_FuBb8WOt-R-67" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=1;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="250" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-69" parent="pIOx2xGsK_FuBb8WOt-R-68" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;" value="PK" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-70" parent="pIOx2xGsK_FuBb8WOt-R-68" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;" value="id: int {NNA}" vertex="1">
+          <mxGeometry height="30" width="220" x="30" as="geometry">
+            <mxRectangle height="30" width="220" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-71" parent="pIOx2xGsK_FuBb8WOt-R-67" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="250" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-72" parent="pIOx2xGsK_FuBb8WOt-R-71" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="FK6" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-73" parent="pIOx2xGsK_FuBb8WOt-R-71" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="dokterId: int {NNA, DTR}" vertex="1">
+          <mxGeometry height="30" width="220" x="30" as="geometry">
+            <mxRectangle height="30" width="220" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-74" parent="pIOx2xGsK_FuBb8WOt-R-67" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" value="" vertex="1">
+          <mxGeometry height="30" width="250" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-75" parent="pIOx2xGsK_FuBb8WOt-R-74" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-76" parent="pIOx2xGsK_FuBb8WOt-R-74" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="specialisatie: Specialisatie {NNA}" vertex="1">
+          <mxGeometry height="30" width="220" x="30" as="geometry">
+            <mxRectangle height="30" width="220" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-77" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" value="BezoekBehandeling" vertex="1">
+          <mxGeometry height="130" width="210" x="30" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-78" parent="pIOx2xGsK_FuBb8WOt-R-77" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=1;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="210" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-79" parent="pIOx2xGsK_FuBb8WOt-R-78" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;" value="PK" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-80" parent="pIOx2xGsK_FuBb8WOt-R-78" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;" value="id: int {NNA}" vertex="1">
+          <mxGeometry height="30" width="180" x="30" as="geometry">
+            <mxRectangle height="30" width="180" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-81" parent="pIOx2xGsK_FuBb8WOt-R-77" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="210" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-82" parent="pIOx2xGsK_FuBb8WOt-R-81" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="FK3" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-83" parent="pIOx2xGsK_FuBb8WOt-R-81" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="bezoekId: int {NNA, DTC}" vertex="1">
+          <mxGeometry height="30" width="180" x="30" as="geometry">
+            <mxRectangle height="30" width="180" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-84" parent="pIOx2xGsK_FuBb8WOt-R-77" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="30" width="210" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-85" parent="pIOx2xGsK_FuBb8WOt-R-84" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" value="FK4" vertex="1">
+          <mxGeometry height="30" width="30" as="geometry">
+            <mxRectangle height="30" width="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-86" parent="pIOx2xGsK_FuBb8WOt-R-84" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="behandelingId: int {NNA, DTR}" vertex="1">
+          <mxGeometry height="30" width="180" x="30" as="geometry">
+            <mxRectangle height="30" width="180" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-87" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="pIOx2xGsK_FuBb8WOt-R-28" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="375" />
+              <mxPoint x="280" y="430" />
+              <mxPoint x="200" y="430" />
+              <mxPoint x="200" y="515" />
+              <mxPoint x="220" y="515" />
+            </Array>
+            <mxPoint x="240" y="375" as="sourcePoint" />
+            <mxPoint x="470" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-88" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-87" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="R4" vertex="1">
+          <mxGeometry relative="1" x="-0.1701" y="-1" as="geometry">
+            <mxPoint x="11" y="22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-89" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-87" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1..1" vertex="1">
+          <mxGeometry relative="1" x="0.8798" as="geometry">
+            <mxPoint y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-90" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-87" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.811" as="geometry">
+            <mxPoint x="-1" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-91" edge="1" parent="1" source="pIOx2xGsK_FuBb8WOt-R-71" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="pIOx2xGsK_FuBb8WOt-R-18" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="345" />
+              <mxPoint x="770" y="75" />
+            </Array>
+            <mxPoint x="760" y="340" as="sourcePoint" />
+            <mxPoint x="920" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-92" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-91" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="R6" vertex="1">
+          <mxGeometry relative="1" x="0.0301" as="geometry">
+            <mxPoint x="-10" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-93" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-91" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1..1" vertex="1">
+          <mxGeometry relative="1" x="0.9097" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-94" connectable="0" parent="pIOx2xGsK_FuBb8WOt-R-91" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.914" as="geometry">
+            <mxPoint x="-3" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-95" parent="1" style="shape=note;size=20;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-family: &amp;quot;Segoe UI&amp;quot;, &amp;quot;Segoe UI Web&amp;quot;, Arial, Verdana, sans-serif; text-align: start; background-color: rgb(255, 255, 255);&quot; class=&quot;SCXW221562290 BCX0&quot;&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Kernentiteiten:&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;1&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;6&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; background-position: 0px 100%; background-repeat: repeat-x; background-image: var(--urlSpellingErrorV2,url(&amp;quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjQiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRUIwMDAwIiBkPSJNMCAzYzEuMjUgMCAxLjI1LTIgMi41LTJTMy43NSAzIDUgMyIvPjxwYXRoIGQ9Ik0wIDBoNXY0SDB6Ii8+PC9nPjwvc3ZnPg==&amp;quot;)); border-bottom: 1px solid transparent;&quot; class=&quot;NormalTextRun SpellingErrorV2Themed SCXW221562290 BCX0&quot;&gt;Patient&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;2&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;6&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Dokter&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;3&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;6&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Bezoek&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Associatie entiteiten:&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;1&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;7&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text;&quot; class=&quot;NormalTextRun SCXW221562290 BCX0&quot;&gt;Bezoek&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text;&quot; class=&quot;NormalTextRun SCXW221562290 BCX0&quot;&gt; (technisch gezien, maar dit is ook de kern waarover het systeem gaat)&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;2&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;7&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; background-position: 0px 100%; background-repeat: repeat-x; background-image: var(--urlSpellingErrorV2,url(&amp;quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjQiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRUIwMDAwIiBkPSJNMCAzYzEuMjUgMCAxLjI1LTIgMi41LTJTMy43NSAzIDUgMyIvPjxwYXRoIGQ9Ik0wIDBoNXY0SDB6Ii8+PC9nPjwvc3ZnPg==&amp;quot;)); border-bottom: 1px solid transparent;&quot; class=&quot;NormalTextRun SpellingErrorV2Themed SCXW221562290 BCX0&quot;&gt;BezoekBehandeling&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-family: &amp;quot;Segoe UI&amp;quot;, &amp;quot;Segoe UI Web&amp;quot;, Arial, Verdana, sans-serif; text-align: start; background-color: rgb(255, 255, 255);&quot; class=&quot;SCXW221562290 BCX0&quot;&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;3&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;7&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; background-position: 0px 100%; background-repeat: repeat-x; background-image: var(--urlSpellingErrorV2,url(&amp;quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjQiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRUIwMDAwIiBkPSJNMCAzYzEuMjUgMCAxLjI1LTIgMi41LTJTMy43NSAzIDUgMyIvPjxwYXRoIGQ9Ik0wIDBoNXY0SDB6Ii8+PC9nPjwvc3ZnPg==&amp;quot;)); border-bottom: 1px solid transparent;&quot; class=&quot;NormalTextRun SpellingErrorV2Themed SCXW221562290 BCX0&quot;&gt;DokterSpecialisatie&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Karakteristieke entiteiten:&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;1&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;8&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Behandeling&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; position: relative;&quot; class=&quot;ListContainerWrapper SCXW221562290 BCX0&quot;&gt;&lt;ul style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: text; font-family: verdana; overflow: visible;&quot; role=&quot;list&quot; class=&quot;BulletListStyle1 SCXW221562290 BCX0&quot;&gt;&lt;li style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 0px 24px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; display: block; font-size: 11pt; font-family: Verdana, Verdana_MSFontService, sans-serif; vertical-align: baseline;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot; role=&quot;listitem&quot; data-aria-level=&quot;1&quot; data-aria-posinset=&quot;2&quot; aria-setsize=&quot;-1&quot; data-list-defn-props=&quot;{&amp;quot;335552541&amp;quot;:1,&amp;quot;335559685&amp;quot;:720,&amp;quot;335559991&amp;quot;:360,&amp;quot;469769226&amp;quot;:&amp;quot;Symbol&amp;quot;,&amp;quot;469769242&amp;quot;:[8226],&amp;quot;469777803&amp;quot;:&amp;quot;left&amp;quot;,&amp;quot;469777804&amp;quot;:&amp;quot;ï‚·&amp;quot;,&amp;quot;469777815&amp;quot;:&amp;quot;hybridMultilevel&amp;quot;}&quot; data-listid=&quot;8&quot; data-font=&quot;Symbol&quot; data-leveltext=&quot;ï‚·&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Specialisatiegebied&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Relatiebeschrijvingen:&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;R1: Een patiÃ«nt kan &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;verschillende&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; bezoeken brengen aan de tandartsenpraktijk. Een bezoek wordt steeds gemaakt door &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;exact Ã©Ã©n&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; patiÃ«nt.&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;R2: Een bezoek wordt steeds afgehandeld door &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Ã©Ã©n&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; dokter. Een dokter kan &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;verschillende&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; bezoek afhandelen.&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;R3 + R4: Tijdens een bezoek worden &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;Ã©Ã©n of meer&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; behandelingen uitgevoerd. Een behandeling kan tijdens &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;verschillende&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; bezoeken uitgevoerd worden.&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr;&quot; class=&quot;OutlineElement Ltr SCXW221562290 BCX0&quot;&gt;&lt;p style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; white-space-collapse: preserve; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;&quot; class=&quot;Paragraph SCXW221562290 BCX0&quot;&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;R5: Een behandeling bevindt zich &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;eventueel&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; in een specialisatiegebied. Er zijn &lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif; font-weight: bold;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt;verschillende&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; class=&quot;TextRun SCXW221562290 BCX0&quot; lang=&quot;NL-BE&quot; data-contrast=&quot;auto&quot;&gt; behandelingen die zich in eenzelfde specialisatiegebied situeren.&lt;/span&gt;&lt;span style=&quot;-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-size: 11pt; line-height: 19.425px; font-family: Verdana, Verdana_EmbeddedFont, Verdana_MSFontService, sans-serif;&quot; data-ccp-props=&quot;{}&quot; class=&quot;EOP SCXW221562290 BCX0&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="570" width="650" x="930" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-96" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" value="Specialisatie" vertex="1">
+          <mxGeometry height="176" width="160" x="540" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-97" parent="pIOx2xGsK_FuBb8WOt-R-96" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="Endodontologie" vertex="1">
+          <mxGeometry height="30" width="160" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-98" parent="pIOx2xGsK_FuBb8WOt-R-96" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="Orthodontie" vertex="1">
+          <mxGeometry height="30" width="160" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-99" parent="pIOx2xGsK_FuBb8WOt-R-96" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="Kindertandheelkunde" vertex="1">
+          <mxGeometry height="30" width="160" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-100" parent="pIOx2xGsK_FuBb8WOt-R-96" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="Restauratieve tanheelkunde" vertex="1">
+          <mxGeometry height="30" width="160" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="pIOx2xGsK_FuBb8WOt-R-101" parent="pIOx2xGsK_FuBb8WOt-R-96" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="Parodontologie" vertex="1">
+          <mxGeometry height="30" width="160" y="146" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

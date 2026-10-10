@@ -1,0 +1,158 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=Databases;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie D (HnS Datamodel)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Update de tabel `Product` in het `HnS` schema. Verlaag de `verkoopprijs` met 5% (vermenigvuldig met 0.95) voor alle producten waarvan er méér dan 10 `eenhedenInVoorraad` zijn.
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `Orderlijn` zodat de `hoeveelheid` altijd groter of gelijk is aan 1. Noem deze constraint `CHK_hoeveelheid_Orderlijn`.
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+\n#!markdown
+
+### Vraag 2 (8 punten)
+Selecteer alle klanten (`HnS.Klant`) die in 'Brussel' wonen (`gemeente`).
+Geef in je overzicht:
+- Een kolom `VolledigeNaam` waarin de `voornaam` en `familienaam` aan elkaar gekoppeld zijn, met de familienaam volledig in hoofdletters.
+- Een kolom `gemeente`.
+- Een kolom `Adres` die is samengesteld uit `straat`, een komma met een spatie, `postcode`, een spatie, en de `gemeente`.
+
+Sorteer op `familienaam` (alfabetisch oplopend) en toon de eerste 10 rijen.
+
+**Gewenst resultaat (eerste 10)**
+| | VolledigeNaam | gemeente | Adres |
+|---|---|---|---|
+| 1 | Eric KLAASSEN | Brussel | Wispelturigestraat 5, 1000 Brussel |
+| 2 | Louisa WILMAERS | Brussel | Leuvensestwg 1, 1000 Brussel |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+\n#!markdown
+
+### Vraag 3 (9 punten)
+Maak een overzicht van producten (`HnS.Product`) en hun bijhorende categorie (`HnS.Categorie`).
+Toon de naam van het product (`ProductNaam`) en de naam van de categorie (`Categorie`).
+Bereken de winstmarge door de inkoopprijs af te trekken van de verkoopprijs, alias `WinstMarge`.
+Creëer met een CASE statement een extra kolom `MargeCategorie`:
+- Als de WinstMarge kleiner is dan 50: `Lage Marge`
+- Als de WinstMarge vanaf 50 maar kleiner is dan 150: `Gemiddelde Marge`
+- In alle andere gevallen: `Hoge Marge`
+
+Sorteer de lijst van meest winstgevende marge naar minst winstgevende. Toon de TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | ProductNaam | Categorie | WinstMarge | MargeCategorie |
+|---|---|---|---|---|
+| 1 | HP DesignJet 800 | Printers (inkjet) | 602.0000 | Hoge Marge |
+| 2 | V82E krachtig audiosysteem met BLUETOOTH-technologie | Printers (inkjet) | 349.3500 | Hoge Marge |
+| 3 | RJ45/RJ45 Patchcord Category 6 | Printers (inkjet) | 249.3500 | Hoge Marge |
+| 4 | V82D krachtig audiosysteem met BLUETOOTH-technologie | Printers (inkjet) | 249.3500 | Hoge Marge |
+| 5 | Oki C5300DN | Printers (laser) | 234.7800 | Hoge Marge |
+| 6 | Intel P4 3, 40GHz EE 478 800MHz FSB 2 MB HT box | Processoren | 149.3500 | Gemiddelde Marge |
+| 7 | Minolta Magicolor 2350 | Printers (laser) | 143.4800 | Gemiddelde Marge |
+| 8 | HP Color Laserjet 3700 | Printers (laser) | 143.4800 | Gemiddelde Marge |
+| 9 | Intel P4 3, 20GHz EE 478 800MHz FSB 2 MB HT box | Processoren | 136.3000 | Gemiddelde Marge |
+| 10 | Minolta Dimage A1 | Digitale camera | 117.3900 | Gemiddelde Marge |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+\n#!markdown
+
+### Vraag 4 (9 punten)
+Geef een overzicht per categorie (`HnS.Categorie`) met de tellen van hoeveel producten (`AantalProducten`) er in die categorie bestaan. Tel daarnaast de `eenhedenInVoorraad` op over al deze producten heen (`TotaleVoorraad`).
+**Let op**: Zorg ervoor dat ook categorieën zónder producten worden getoond, waarbij `TotaleVoorraad` op 0 uitkomt, niet NULL (gebruik `ISNULL` en een outer join).
+Groepeer op categorienaam en sorteer dalend op `AantalProducten`.
+
+Toon de eerste 10 resultaten.
+
+**Gewenst resultaat (eerste 10)**
+| | Categorie | AantalProducten | TotaleVoorraad |
+|---|---|---|---|
+| 1 | Processoren | 26 | 62 |
+| 2 | Harde schijf | 20 | 71 |
+| 3 | Monitoren | 14 | 31 |
+| 4 | Moederbord | 13 | 4 |
+| 5 | Multimedia | 13 | 15 |
+| 6 | Printers (inkjet) | 13 | 31 |
+| 7 | Geheugen | 12 | 18 |
+| 8 | Computerkast | 11 | 46 |
+| 9 | Grafische kaart | 10 | 15 |
+| 10 | Software | 9 | 50 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+\n#!markdown
+
+### Vraag 5 (8 punten)
+We willen weten welke klanten (`HnS.Klant`) er verantwoordelijk zijn voor bestellingen (`HnS.[Order]`) die het állerduurste product (hoogste `verkoopprijs` in `HnS.Product`) van de winkel bevatten (`HnS.Orderlijn`).
+Gebruik hiervoor de noodzakelijke (sub)queries of joins, maar bereken de MAX(verkoopprijs) in een afzonderlijke subquery.
+Toon: de `familienaam`, `voornaam`, en `gemeente` van deze klanten. Gebruik `DISTINCT` om dubbele resultaten te vermijden!
+
+**Gewenst resultaat**
+| | familienaam | voornaam | gemeente |
+|---|---|---|---|
+| 1 | Stevens | Louis | Gent |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+\n#!markdown
+
+### Vraag 6 (4 punten)
+Wat zijn de bestellingen (`HnS.[Order]`) met de langste levertijd? Bereken de levertijd in dagen (`DATEDIFF` in `DAY`) tussen `orderdatum` en `leveringsdatum` (`LeverTijdInDagen`).
+Toon ook de `familienaam` van de klant (`KlantNaam`) en formatteer de `orderdatum` als `dd/MM/yyyy`. Filter enkel op orders waar daadwerkelijk een `leveringsdatum` is ingevuld (niet NULL).
+Sorteer dalend op levertijd en toon de TOP 5.
+
+**Gewenst resultaat (eerste 5)**
+| | KlantNaam | OrderDatum | LeverTijdInDagen |
+|---|---|---|---|
+| 1 | Stevens | 16/08/2016 | 2 |
+| 2 | Smeyers | 16/08/2016 | 2 |
+| 3 | Klaassen | 23/08/2016 | 2 |
+| 4 | Klaassen | 23/08/2016 | 2 |
+| 5 | Vervoort | 05/08/2016 | 1 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+\n

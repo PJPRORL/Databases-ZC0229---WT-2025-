@@ -1,0 +1,212 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie J (Server & Bestanden)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Werk de tabel `Abs.LibraryItems` bij. Zet de indicatie `isMissing` op 1 voor alle bibliotheek-bestanden wiens bestandsgrootte (`size`) gelijk is aan 0.
+
+**1.2 Data Definition Language**
+Voeg een check toe op de inlog-tabel (`Abs.Sessions`) om te verhinderen dat een sessie vervalt nog voordat deze aangemaakt wordt. Voeg een constraint toe die zegt dat de verloopdatum groter moet zijn dan de creatiedatum (`expiresAt > createdAt`). Noem deze constraint `CHK_Sessions_Expire`.
+
+#!sql-SqlServer
+
+-- 1.1 Vervanging
+UPDATE Abs.LibraryItems
+SET isMissing = 1
+WHERE size = 0;
+
+-- 1.2 Aanbrengen CK
+ALTER TABLE Abs.Sessions
+ADD CONSTRAINT CHK_Sessions_Expire CHECK (expiresAt > createdAt);
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Geef een technisch rapport van de bestanden op de schijf via de tabel `Abs.LibraryItems`. Neem enkel bestanden mee waar `size > 0`.
+Toon:
+- De naam van het bestand (getrimde `title`) als `BestandNaam`.
+- De afgeronde grootte in Megabytes (als `GrootteMB`). Formule: `ROUND(size / 1048576.0, 2)`. Let op dat je deelt door het float/decimaal getal 1048576.0.
+- Een `PathPrefix` van het relatieve pad (`relPath`). Toon hier enkel de eerste 15 karakters (gebruik de functie `LEFT()` of `SUBSTRING()`).
+
+Sorteer van zwaarste bestand bovenaan naar lichtere bestanden aflopend op MB. Toon TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | BestandNaam | GrootteMB | PathPrefix |
+|---|---|---|---|
+| 1 | Welcome to Night Vale | 9032.410000000 | Welcome to Nigh |
+| 2 | Improvised Star Trek | 8752.240000000 | Improvised Star |
+| 3 | Hello From The Magic Tavern: Season 5 | 8603.420000000 | Hello From The |
+| 4 | Hello From The Magic Tavern: Season 4 | 5106.970000000 | Hello From The |
+| 5 | Hello From The Magic Tavern: Season 3 | 5063.650000000 | Hello From The |
+| 6 | Hello From The Magic Tavern: Season 2 | 4460.800000000 | Hello From The |
+| 7 | Hello From The Magic Tavern: Season 1 | 3388.280000000 | Hello From The |
+| 8 | Fooniverse | 3159.260000000 | Fooniverse |
+| 9 | The Way of Kings Prime | 3070.810000000 | Brandon Sanders |
+| 10 | Voyage to the Stars | 2949.590000000 | Voyage to the S |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 2
+SELECT TOP 10 
+    TRIM(title) AS BestandNaam,
+    ROUND(size / 1048576.0, 2) AS GrootteMB,
+    LEFT(relPath, 15) AS PathPrefix
+FROM Abs.LibraryItems
+WHERE size > 0
+ORDER BY GrootteMB DESC;
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+Via welk Platform loggen de gebruikers in op onze server? (Tabel: `Abs.Users` gekoppeld aan `Abs.Sessions` op `userId`).
+Geef per log-in de `username` van de account (`Gebruikersnaam`) en een `Platform` categorie, gebaseerd op het the veld `userAgent` uit de Sessies:
+- Als `userAgent LIKE '%Windows%'`: `Windows`
+- Als `userAgent LIKE '%Mac%'`: `Mac`
+- Als `userAgent LIKE '%Linux%'`: `Linux`
+- In alle andere gevallen: `Mobiel/Overig`
+
+Toon tevens de datum waarop deze is gelogd: Formatteer de `createdAt` uit Sessions naar 'yyyy-MM-dd' als `SessieDatum`.
+Sorteer de sessies meest-recent bovenaan (`createdAt` dalend) en toon the TOP 10.
+
+**Gewenst resultaat**
+| | Gebruikersnaam | Besturingssysteem | SessieDatum |
+|---|---|---|---|
+| 1 | janeDoe2 | Mobiel/Overig | 2026-04-26 |
+| 2 | johnDoe1 | Linux | 2026-01-17 |
+| 3 | johnDoe1 | Linux | 2026-01-17 |
+| 4 | johnDoe2 | Linux | 2025-12-31 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 3
+SELECT TOP 10
+    TRIM(u.username) AS Gebruikersnaam,
+    CASE 
+        WHEN s.userAgent LIKE '%Windows%' THEN 'Windows'
+        WHEN s.userAgent LIKE '%Mac%' THEN 'Mac'
+        WHEN s.userAgent LIKE '%Linux%' THEN 'Linux'
+        ELSE 'Mobiel/Overig'
+    END AS Besturingssysteem,
+    FORMAT(s.createdAt, 'yyyy-MM-dd') AS SessieDatum
+FROM Abs.Users u
+INNER JOIN Abs.Sessions s ON u.id = s.userId
+ORDER BY s.createdAt DESC;
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Hoe vaak logt iemand in? Tel per account (`Abs.Users`) het aantal sessies in de database (tabel `Abs.Sessions` - let op de relatie).
+Gebruik de nodige outer join om ervoor te zorgen dat gebruikers zónder the inlog-geschiedenis tóch zichtbaar zijn (met 0 inlogsessies).
+Toon de getrimde naam en tel als `AantalInlogsessies`. Groepeer en toon the list dalend gesorteerd op het aantal sessies.
+
+**Gewenst resultaat**
+| | Gebruikersnaam | AantalInlogsessies |
+|---|---|---|
+| 1 | johnDoe1 | 2 |
+| 2 | johnDoe2 | 1 |
+| 3 | janeDoe2 | 1 |
+| 4 | janeDoe1 | 0 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 4
+SELECT TOP 10
+    TRIM(u.username) AS Gebruikersnaam,
+    COUNT(s.id) AS AantalInlogsessies
+FROM Abs.Users u
+LEFT JOIN Abs.Sessions s ON u.id = s.userId
+GROUP BY u.username
+ORDER BY AantalInlogsessies DESC;
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Welke specifieke mediabestanden in onze bibliotheek nemen buitengewoon grote opslag in beslag? 
+Zoek the titels (als `BestandNaam` met `DISTINCT`) in `Abs.LibraryItems` waarvan de grootte (`size`) **hoger is dan het globale gemiddelde** (average).
+Gebruik een `SUBQUERY` in je `WHERE`-clause. Zorg er binnen je subquery (wanneer je the `AVG` over alle rijen van LibraryItems berekent) wel voor dat je `CAST(size AS BIGINT)` gebruikt, anders crasht je wiskundige rekenmachine omdat het getal te groot is voor standaard integer!
+Toon the TOP 10 alfabetisch geordend op bestandsnaam.
+
+**Gewenst resultaat (eerste 10)**
+| | BestandNaam |
+|---|---|
+| 1 | 14 |
+| 2 | 1632 |
+| 3 | A Blight of Blackwings |
+| 4 | A Brief History of Chronomancy |
+| 5 | A Conjuring of Light |
+| 6 | A Crown of Swords |
+| 7 | A Crown so Silver |
+| 8 | A Crucible of Souls |
+| 9 | A Curse of Krakens |
+| 10 | A Darker Shade of Magic |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 5
+SELECT DISTINCT TOP 10
+    TRIM(title) AS BestandNaam
+FROM Abs.LibraryItems
+WHERE size > (
+    SELECT AVG(CAST(size AS BIGINT)) 
+    FROM Abs.LibraryItems
+)
+ORDER BY BestandNaam ASC;
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Haal de 5 oudste bestanden uit de library op (`Abs.LibraryItems`).
+Bereken (als `DagenSindsAanmaak`) het aantal dagen tussen the File-creation Time (`cTime`) en de peildatum van het examen: `'2026-08-01'`.
+Sorteer op the dagen dalend. Toon TOP 5 bestanden.
+
+**Gewenst resultaat (eerste 5)**
+| | BestandNaam | DagenSindsAanmaak |
+|---|---|---|
+| 1 | Improvised Star Trek | 803 |
+| 2 | Hey Tavern Tavern! | 803 |
+| 3 | Usidore's Fetching Quests! | 803 |
+| 4 | Patreon Extras | 803 |
+| 5 | Shadow City | 803 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 6
+SELECT TOP 5 
+    TRIM(title) AS BestandNaam,
+    DATEDIFF(DAY, cTime, '2026-08-01') AS DagenSindsAanmaak
+FROM Abs.LibraryItems
+ORDER BY DagenSindsAanmaak DESC;
+

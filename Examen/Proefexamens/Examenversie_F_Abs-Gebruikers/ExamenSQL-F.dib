@@ -1,0 +1,164 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie F (Abs Luistergedrag)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Update de tabel `Users` in het `Abs` schema. Zet het `type` op 'user' voor alle accounts waar dit veld NULL of leeg is. (Gebruik `IS NULL` of `type = ''`).
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `PlaybackSessions` zodat de geluisterde tijd (`timeListening`) `>= 0` is. Noem de constraint `CHK_timeListening_Positive`.
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Selecteer alle actieve gebruikers (`Abs.Users` waarbij `isActive = 1`).
+Geef in je overzicht:
+- Een kolom `GebruikerInfo` met de formattering: *username (type)*. Als `type` onbekend is, toon 'unknown' m.b.v. `ISNULL`.
+- Een kolom `GeregistreerdOp` gebaseerd op de `createdAt` datum in de format `dd-MM-yyyy HH:mm`.
+- Een kolom `isActive` die de actieve status toont (altijd 1 wegens de filter).
+
+Sorteer op gebruikersnaam alfabetisch en toon top 10.
+
+**Gewenst resultaat**
+| | GebruikerInfo | GeregistreerdOp | isActive |
+|---|---|---|---|
+| 1 | janeDoe1 (user) | 22-02-2023 11:42 | 1 |
+| 2 | janeDoe2 (user) | 27-12-2025 12:29 | 1 |
+| 3 | johnDoe1 (root) | 22-02-2023 09:08 | 1 |
+| 4 | johnDoe2 (user) | 23-03-2025 10:41 | 1 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+Combineer de tabellen `Users` (u) en `PlaybackSessions` (p). 
+Toon de getrimde `username` (`Gebruikersnaam`) en de titel (`displayTitle` als `BoekTitel`).
+Bedenk een CASE statement gebaseerd op `p.timeListening`:
+- Kleiner dan 60: `Zappen`
+- Tussen 60 en 3600 (kleiner dan): `Luisteren`
+- Anders: `Bingen` (als `LuisterGedrag`).
+
+Sorteer dalend op `timeListening` in de sessie. Toon de TOP 10 sessies uit het platform.
+
+**Gewenst resultaat (eerste 10)**
+| | Gebruikersnaam | BoekTitel | LuisterGedrag |
+|---|---|---|---|
+| 1 | johnDoe2 | The Shadow of What Was Lost | Bingen |
+| 2 | johnDoe2 | The Light of All That Falls | Bingen |
+| 3 | johnDoe1 | Damned | Bingen |
+| 4 | janeDoe2 | The Hero of Ages | Bingen |
+| 5 | johnDoe1 | Bury Our Bones in the Midnight Soil | Bingen |
+| 6 | johnDoe1 | The Will of the Many | Bingen |
+| 7 | johnDoe1 | The Witchwood Crown | Bingen |
+| 8 | johnDoe1 | The Doors of Midnight | Bingen |
+| 9 | johnDoe1 | The Tainted Khan | Bingen |
+| 10 | johnDoe2 | The Alloy of Law | Bingen |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+We berekenen het totaaloverzicht per gebruiker (`Abs.Users`).
+Toon de getrimde gebruikersnaam. Gebruik een LEFT JOIN naar `Abs.PlaybackSessions` om te kijken naar luistersessies.
+Tel het aantal sessies (`AantalSessies`) en neem de som van `timeListening` (`TotaleLuistertijd`).
+Indien de gebruiker geen sessies heeft, toon dan een tijd van 0 i.p.v. NULL (`ISNULL`).
+
+Groepeer per gebruikersnaam en sorteer dalend op totale luistertijd. Toon de top 10.
+
+**Gewenst resultaat**
+| | Gebruikersnaam | AantalSessies | TotaleLuistertijd |
+|---|---|---|---|
+| 1 | johnDoe1 | 706 | 4644139.234663412 |
+| 2 | johnDoe2 | 418 | 2001523.0 |
+| 3 | janeDoe2 | 113 | 276567.0 |
+| 4 | janeDoe1 | 5 | 20501.0 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Welke gebruikers (`Users`) hebben een sessie gestart (via `PlaybackSessions`) voor het langste boek ooit gepubliceerd in `Books`?
+Oplossing te maken via subqueries (geen Joins naar Books): gebruik `bookId` en een MAX functie!
+Toon de getrimde `username` (`Gebruikersnaam`) en gebruik `DISTINCT` om dubbels te voorkomen.
+
+**Gewenst resultaat**
+| | Gebruikersnaam |
+|---|---|
+| 1 | johnDoe1 |
+| 2 | johnDoe2 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Toon de 5 actieve gebruikers wiens `lastSeen` niet NULL is. 
+Bereken via `DATEDIFF` in dagen het verschil tussen `createdAt` (registratie) en de `lastSeen` (laatst actief) als `DagenActief`.
+Sorteer dalend op `DagenActief`.
+
+**Gewenst resultaat**
+| | Gebruikersnaam | DagenActief |
+|---|---|---|
+| 1 | johnDoe1 | 1181 |
+| 2 | janeDoe1 | 858 |
+| 3 | johnDoe2 | 421 |
+| 4 | janeDoe2 | 142 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+

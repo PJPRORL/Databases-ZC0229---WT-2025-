@@ -1,0 +1,209 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=Databases;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie C (Pubs Datamodel)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Update de tabel `Book` in het `Pubs` schema. Verhoog de `price` (prijs) van alle boeken die van het `type` 'business' zijn met 10% (vermenigvuldig met 1.10).
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `Book` zodat de `price` altijd groter is dan 0. Noem deze constraint `CHK_price_Book`.
+
+#!sql-SqlServer
+
+-- 1.1 Vervanging
+UPDATE Pubs.Book
+SET price = price * 1.10
+WHERE type = 'business';
+
+-- 1.2 Aanbrengen CK
+ALTER TABLE Pubs.Book
+ADD CONSTRAINT CHK_price_Book CHECK (price > 0);
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Selecteer alle boeken (`Pubs.Book`) die zijn uitgebracht (`releaseDate`) na 1 januari 1991.
+Geef in je overzicht:
+- Een kolom `BoekTitel` met de getrimde `title` van het boek.
+- Een kolom `UitgaveDatum` gebaseerd op `releaseDate` in het formaat `dd-MM-yyyy`.
+- Een kolom `TypeCategorie` waar je het `type` van het boek toont. Verander eventuele underscores (`_`) in een spatie, en zet de volledige categorie in hoofdletters.
+
+Sorteer chronologisch op uitgavedatum (oudste eerst). Toon enkel de top 10.
+
+**Gewenst resultaat (eerste 10)**
+| | BoekTitel | UitgaveDatum | TypeCategorie |
+|---|---|---|---|
+| 1 | Cooking with Computers: Surreptitious Balance Sheets | 09-06-1991 | BUSINESS |
+| 2 | Silicon Valley Gastronomic Treats | 09-06-1991 | MOD COOK |
+| 3 | The Busy Executive's Database Guide | 12-06-1991 | BUSINESS |
+| 4 | Prolonged Data Deprivation: Four Case Studies | 12-06-1991 | PSYCHOLOGY |
+| 5 | Fifty Years in Buckingham Palace Kitchens | 12-06-1991 | TRAD COOK |
+| 6 | Emotional Security: A New Algorithm | 12-06-1991 | PSYCHOLOGY |
+| 7 | Is Anger the Enemy? | 15-06-1991 | PSYCHOLOGY |
+| 8 | The Gourmet Microwave | 18-06-1991 | MOD COOK |
+| 9 | Straight Talk About Computers | 22-06-1991 | BUSINESS |
+| 10 | You Can Combat Computer Stress! | 30-06-1991 | BUSINESS |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 2
+SELECT TOP 10 
+    TRIM(title) AS BoekTitel,
+    FORMAT(releaseDate, 'dd-MM-yyyy') AS UitgaveDatum,
+    UPPER(REPLACE(type, '_', ' ')) AS TypeCategorie
+FROM Pubs.Book
+WHERE releaseDate > '1991-01-01'
+ORDER BY releaseDate ASC;
+
+#!markdown
+
+### Vraag 3 (9 punten)
+We maken een overzicht van de boeken (`Pubs.Book`), hun uitgever (`Pubs.Publisher`) en de auteur(s) (`Pubs.Author`). De koppeltabel is `Pubs.TitleAuthor`.
+Toon: de titel van het boek (`BoekTitel`), de naam van de uitgever (`Uitgeverij`), en de achternaam van de auteur (`AuteurNaam`). Let op: trim al deze strings!
+Maak met een CASE statement een `PrijsCategorie` op basis van de `price`:
+- Minder dan 15: `Budget`
+- Vanaf 15 tot minder dan 20: `Standaard`
+- Vanaf 20 en hoger: `Premium`
+
+Sorteer de lijst op prijs (van hoog naar laag). Toon de TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | BoekTitel | Uitgeverij | AuteurNaam | PrijsCategorie |
+|---|---|---|---|---|
+| 1 | But Is It User Friendly? | Algodata Infosystems | Carson | Premium |
+| 2 | Computer Phobic AND Non-Phobic Individuals: Behavior Variations | Binnet & Hardley | MacFeather | Premium |
+| 3 | Computer Phobic AND Non-Phobic Individuals: Behavior Variations | Binnet & Hardley | Karsen | Premium |
+| 4 | Onions, Leeks, and Garlic: Cooking Secrets of the Mediterranean | Binnet & Hardley | Panteley | Premium |
+| 5 | Secrets of Silicon Valley | Algodata Infosystems | Dull | Premium |
+| 6 | Secrets of Silicon Valley | Algodata Infosystems | Hunter | Premium |
+| 7 | The Busy Executive's Database Guide | Algodata Infosystems | Green | Standaard |
+| 8 | The Busy Executive's Database Guide | Algodata Infosystems | Bennet | Standaard |
+| 9 | Prolonged Data Deprivation: Four Case Studies | New Moon Books | White | Standaard |
+| 10 | Silicon Valley Gastronomic Treats | Binnet & Hardley | del Castillo | Standaard |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 3
+SELECT TOP 10
+    TRIM(b.title) AS BoekTitel,
+    TRIM(p.name) AS Uitgeverij,
+    TRIM(a.lastName) AS AuteurNaam,
+    CASE 
+        WHEN b.price < 15 THEN 'Budget'
+        WHEN b.price < 20 THEN 'Standaard'
+        ELSE 'Premium'
+    END AS PrijsCategorie
+FROM Pubs.Book b
+INNER JOIN Pubs.Publisher p ON b.publisherId = p.id
+INNER JOIN Pubs.TitleAuthor ta ON b.id = ta.bookId
+INNER JOIN Pubs.Author a ON ta.authorId = a.id
+ORDER BY b.price DESC;
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Maak per uitgeverij (`Pubs.Publisher`) een overzicht van hoeveel verschillende boeken (`Pubs.Book`) ze hebben uitgegeven (`AantalBoeken`) en wat de som is van al hun verkopen (gebruik kolom `sales` in tabel `Book` als `TotaleVerkoop`). 
+**Let op**: Zorg dat uitgevers zonder boeken óók in de lijst verschijnen (gebruik een OUTER JOIN). Hun `TotaleVerkoop` mag niet NULL zijn, maar moet 0 tonen.
+Groepeer per uitgever (getrimd!) en sorteer aflopend op `AantalBoeken`.
+
+**Gewenst resultaat**
+| | Uitgeverij | AantalBoeken | TotaleVerkoop |
+|---|---|---|---|
+| 1 | Binnet & Hardley | 7 | 44219 |
+| 2 | New Moon Books | 4 | 26241 |
+| 3 | Algodata Infosystems | 4 | 20846 |
+| 4 | Scootney Books | 0 | 0 |
+| 5 | Ramona Publishers | 0 | 0 |
+| 6 | Lucerne Publishing | 0 | 0 |
+| 7 | GGG&G | 0 | 0 |
+| 8 | Five Lakes Publishing | 0 | 0 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 4
+SELECT TOP 10
+    TRIM(p.name) AS Uitgeverij,
+    COUNT(b.id) AS AantalBoeken,
+    ISNULL(SUM(b.sales), 0) AS TotaleVerkoop
+FROM Pubs.Publisher p
+LEFT JOIN Pubs.Book b ON p.id = b.publisherId
+GROUP BY p.name
+ORDER BY AantalBoeken DESC;
+
+#!markdown
+
+### Vraag 5 (8 punten)
+We willen weten welke winkels (`Pubs.Store`) het állerduurste boek (hoogste `price` in `Pubs.Book`) ooit hebben besteld (`Pubs.Sale`).
+Gebruik subqueries (geen joins naar Book voor de prijsvergelijking!) om de winkels op te zoeken (`storeId` in `Sale` enz.).
+Toon de getrimde naam van de winkel (`WinkelNaam`) en de stad (`Stad`). Zorg dat winkels geen dubbele rijen opleveren (gebruik `DISTINCT`).
+
+**Gewenst resultaat**
+| | WinkelNaam | Stad |
+|---|---|---|
+| 1 | Bookbeat | Portland |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 5
+SELECT DISTINCT
+    TRIM(s.name) AS WinkelNaam,
+    TRIM(s.city) AS Stad
+FROM Pubs.Store s
+INNER JOIN Pubs.Sale sl ON s.id = sl.storeId
+WHERE sl.bookId IN (
+    SELECT id 
+    FROM Pubs.Book 
+    WHERE price = (SELECT MAX(price) FROM Pubs.Book)
+);
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Toon de TOP 5 alleroudste boeken uit de database (`Pubs.Book`). Toon de `BoekTitel` (getrimd) en bereken het aantal dagen (`DagenOud`) tussen de `releaseDate` en 1 januari 2026 ('2026-01-01').
+Sorteer dalend op ouderdom.
+
+**Gewenst resultaat (eerste 5)**
+| | BoekTitel | DagenOud |
+|---|---|---|
+| 1 | Cooking with Computers: Surreptitious Balance Sheets | 12625 |
+| 2 | Silicon Valley Gastronomic Treats | 12625 |
+| 3 | The Busy Executive's Database Guide | 12622 |
+| 4 | Prolonged Data Deprivation: Four Case Studies | 12622 |
+| 5 | Fifty Years in Buckingham Palace Kitchens | 12622 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 6
+SELECT TOP 5 
+    TRIM(title) AS BoekTitel,
+    DATEDIFF(DAY, releaseDate, '2026-01-01') AS DagenOud
+FROM Pubs.Book
+ORDER BY DagenOud DESC;

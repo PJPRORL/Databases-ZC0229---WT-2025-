@@ -1,0 +1,205 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie G (Abs Collecties)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Update de tabel `Collections` in het `Abs` schema. Zet de omschrijving (`description`) op 'Geen beschrijving' waar deze momenteel NULL is.
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `CollectionBooks` zodat een boek altijd een `position` heeft die gelijk is aan of groter is dan 0. Noem de constraint `CHK_position_CollectionBooks`.
+
+#!sql-SqlServer
+
+-- 1.1 Vervanging
+UPDATE Abs.Collections
+SET description = 'Geen beschrijving'
+WHERE description IS NULL;
+
+-- 1.2 Aanbrengen CK
+ALTER TABLE Abs.CollectionBooks
+ADD CONSTRAINT CHK_position_CollectionBooks CHECK (position >= 0);
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Selecteer collecties (`Abs.Collections`) waarbij de getrimde naam (`name`) de tekst 'The' bevat.
+Geef in je overzicht:
+- Een kolom `CollectieInfo` met format: *Naam (Beschrijving)*. Als beschrijving ontbreekt (NULL is), gebruik 'N/A' (via `ISNULL`).
+- Een kolom `ToegevoegdOp` op basis van `createdAt` als `yyyy/MM/dd`.
+
+Sorteer alfabetisch op serienaam. Toon top 10.
+
+**Gewenst resultaat**
+| | CollectieInfo | ToegevoegdOp |
+|---|---|---|
+| 1 | The Demon Cycle (N/A) | 2026/04/08 |
+| 2 | The Realm of the Elderlings (New Recordings) (N/A) | 2026/01/29 |
+| 3 | The Realm of the Elderlings (Old Recordings) (N/A) | 2026/01/29 |
+| 4 | The Riftwar Cycle (N/A) | 2025/12/24 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 2
+SELECT TOP 10 
+    CONCAT(name, ' (', ISNULL(description, 'N/A'), ')') AS CollectieInfo,
+    FORMAT(createdAt, 'yyyy/MM/dd') AS ToegevoegdOp
+FROM Abs.Collections
+WHERE name LIKE '%The%'
+ORDER BY name ASC;
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+We maken een overzicht van Collecties (`Collections`), de volgorde (`CollectionBooks`) en de gekoppelde boeken (`Books`).
+Toon de getrimde naam van de collectie en titel van het boek.
+Gebruik de kolom `position` (uit CollectionBooks) in een CASE statement als `PositieCategorie`:
+- Als `position = 1`: `Eerste Boek`
+- Als `position <= 3`: `Trilogie-deel`
+- Anders: `Vervolg`
+
+Sorteer eerst oplopend op collectienaam, daarna oplopend op positie binnen de collectie! Toon TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | CollectieNaam | BoekTitel | PositieCategorie |
+|---|---|---|---|
+| 1 | Mercy Thompson World | Moon Called | Eerste Boek |
+| 2 | Mercy Thompson World | Cry Wolf | Trilogie-deel |
+| 3 | Mercy Thompson World | Hunting Ground | Trilogie-deel |
+| 4 | Mercy Thompson World | Blood Bound | Vervolg |
+| 5 | Mercy Thompson World | Iron Kissed | Vervolg |
+| 6 | Mercy Thompson World | Bone Crossed | Vervolg |
+| 7 | Mercy Thompson World | Silver Borne | Vervolg |
+| 8 | Mercy Thompson World | River Marked | Vervolg |
+| 9 | Mercy Thompson World | Fair Game | Vervolg |
+| 10 | Mercy Thompson World | Frost Burned | Vervolg |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 3
+SELECT TOP 10
+    TRIM(c.name) AS CollectieNaam,
+    TRIM(b.title) AS BoekTitel,
+    CASE 
+        WHEN cb.position = 1 THEN 'Eerste Boek'
+        WHEN cb.position <= 3 THEN 'Trilogie-deel'
+        ELSE 'Vervolg'
+    END AS PositieCategorie
+FROM Abs.Collections c
+INNER JOIN Abs.CollectionBooks cb ON c.id = cb.collectionId
+INNER JOIN Abs.Books b ON cb.bookId = b.id
+ORDER BY c.name ASC, cb.position ASC;
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Geef een statistiek per collectie (`Abs.Collections`). We willen het aantal toegewezen boeken weten (`AantalBoeken`) en de totale luistertijd per collectie (`TotaleCollectieDuur`).
+Zorg via outer joins (naar `CollectionBooks` en `Books`) dat collecties zonder enig boek evengoed verschijnen.
+Hun `TotaleCollectieDuur` moet dan naar 0 worden omgezet via `ISNULL`.
+Sorteer de lijst dalend op AantalBoeken. Toon top 10.
+
+**Gewenst resultaat (eerste 6)**
+| | CollectieNaam | AantalBoeken | TotaleCollectieDuur |
+|---|---|---|---|
+| 1 | Mercy Thompson World | 21 | 775147.84300000011 |
+| 2 | The Realm of the Elderlings (Old Recordings) | 16 | 1571783.3090000001 |
+| 3 | The Riftwar Cycle | 4 | 357862.20900000003 |
+| 4 | The Demon Cycle | 2 | 161258.902 |
+| 5 | The Realm of the Elderlings (New Recordings) | 0 | 0.0 |
+| 6 | Terrible Worlds | 0 | 0.0 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 4
+SELECT TOP 10
+    TRIM(c.name) AS CollectieNaam,
+    COUNT(b.id) AS AantalBoeken,
+    ISNULL(SUM(b.duration), 0) AS TotaleCollectieDuur
+FROM Abs.Collections c
+LEFT JOIN Abs.CollectionBooks cb ON c.id = cb.collectionId
+LEFT JOIN Abs.Books b ON cb.bookId = b.id
+GROUP BY c.name
+ORDER BY AantalBoeken DESC;
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Welke collecties (`Collections`) bevatten ten minste één boek (`Books`) dat oorspronkelijk is uitgegeven vóór 2010 (`publishedYear < 2010`)?
+Los dit op met geneste subqueries (via `CollectionBooks`). Gebruik dus géén INNER JOIN tussen Collections en Books!
+Toon de getrimde serienaam (`CollectieNaam`) uniek via `DISTINCT`.
+
+**Gewenst resultaat**
+| | CollectieNaam |
+|---|---|
+| 1 | Mercy Thompson World |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 5
+SELECT DISTINCT
+    TRIM(c.name) AS CollectieNaam
+FROM Abs.Collections c
+INNER JOIN Abs.CollectionBooks cb ON c.id = cb.collectionId
+WHERE cb.bookId IN (
+    SELECT id 
+    FROM Abs.Books 
+    WHERE publishedYear < 2010
+);
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Wat zijn de 5 allernieuwste (vergeleken met 1 augustus 2026) geregistreerde collecties in de structuur? (Op basis van de `createdAt` kolom in `Abs.Collections`).
+Bereken de leeftijd in aantal dagen als `DagenOud` (`'2026-08-01'`).
+Sorteer de lijst chronologisch oplopend op dagen oud, zodat de nieuwste bovenaan komen. Toon TOP 5.
+
+**Gewenst resultaat**
+| | CollectieNaam | DagenOud |
+|---|---|---|
+| 1 | The Demon Cycle | 115 |
+| 2 | Terrible Worlds | 115 |
+| 3 | The Realm of the Elderlings (New Recordings) | 184 |
+| 4 | The Realm of the Elderlings (Old Recordings) | 184 |
+| 5 | The Riftwar Cycle | 220 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 6
+SELECT TOP 5 
+    TRIM(name) AS CollectieNaam,
+    DATEDIFF(DAY, createdAt, '2026-08-01') AS DagenOud
+FROM Abs.Collections
+ORDER BY DagenOud ASC;
+

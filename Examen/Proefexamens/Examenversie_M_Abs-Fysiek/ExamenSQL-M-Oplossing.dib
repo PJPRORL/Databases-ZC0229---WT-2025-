@@ -1,0 +1,183 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie M (Fysieke Bestandsstructuur & Mappen)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+In de bestanden-tabel (`Abs.LibraryItems`) staat een `titleIgnorePrefix` ("Genegeerde prefix voor sortering"). Werk deze tabel bij: waar de the raw `title` begint met de tekst 'The ' (denk aan de spatie!), schrijf je letterlijk de string 'The ' weg naar `titleIgnorePrefix`.
+
+**1.2 Data Definition Language**
+Beveilig de tabellen. Een library folder (`Abs.LibraryFolders`) moet altijd verwijzen naar het absolute root-pad op onze Linux server. Plaats een constraint `CHK_path_start` om af te dwingen dat de `path` variabele altijd begint met een slash (tip: `path LIKE '/%'`).
+
+#!sql-SqlServer
+
+-- 1.1 Vervanging
+UPDATE Abs.LibraryItems
+SET titleIgnorePrefix = 'The '
+WHERE title LIKE 'The %';
+
+-- 1.2 Aanbrengen CK
+ALTER TABLE Abs.LibraryFolders
+ADD CONSTRAINT CHK_path_start CHECK (path LIKE '/%');
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Wat zijn onze zwaarste bestanden die over 1 Gigabyte (1.000.000.000 bytes) opslag in beslag nemen? 
+Tabel: `Abs.LibraryItems`.
+Selecteer `title` als `BestandNaam`. Selecteer ook het relatieve pad (`relPath`) en dwing the query om dit in het formaat UPPERCASE (HOOFDLETTERS) te tonen (als `HoofdPad`). Tenslotte selecteer je `titleIgnorePrefix`. Omdat veel van deze waarden NULL zijn, manipuleer je the the column via `ISNULL` om ze weer te geven als een lege string `''`.
+Filter met `WHERE size > 1000000` (wat overigens 1 MB is wegens de kleinere databasegrootte op deze examen test).
+Sorteer alfabetisch op the bestandsnaam (TOP 10).
+
+**Gewenst resultaat**
+| | BestandNaam | HoofdPad | GenegeerdVoorvoegsel |
+|---|---|---|---|
+| 1 | A Blight of Blackwings | KEVIN HEARNE/THE SEVEN KENNINGS/... |  |
+| 2 | A Brief History of Chronomancy | ANDREW ROWE/ARCANE ASCENSION/... |  |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 2
+SELECT TOP 10 
+    TRIM(title) AS BestandNaam, 
+    UPPER(relPath) AS HoofdPad, 
+    ISNULL(titleIgnorePrefix, '') AS GenegeerdVoorvoegsel 
+FROM Abs.LibraryItems 
+WHERE size > 1000000 
+ORDER BY BestandNaam ASC;
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+Combineer de data over waar bestanden zich fysiek bevinden met hun database log.
+Joins: `Abs.LibraryFolders` (f) en `Abs.LibraryItems` (i).
+Toon the raw directory `f.path` als `Map` en getrimde `i.title` als `Bestand`.
+Bedenk een `CASE` genaamd `Status`: Controleer op the `LibraryItems` tabel of de bestands-modificatietijd groter (nieuwer) is dan de creatietijd (`mTime > cTime`). Indien ja: 'Gewijzigd'. Anders: 'Origineel'.
+Sorteer eerst alfabetisch op pad, daarna op bestandsnaam (TOP 10).
+
+**Gewenst resultaat**
+| | Map | Bestand | Status |
+|---|---|---|---|
+| 1 | /mnt/pool4/Audiobooks/M4B | The Mercy Makers | Origineel |
+| 2 | /mnt/pool4/Audiobooks/M4B | 3 Stories | Origineel |
+| 3 | /mnt/pool4/Audiobooks/M4B | A Blight of Blackwings | Origineel |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 3
+SELECT TOP 10 
+    TRIM(f.path) AS Map, 
+    TRIM(i.title) AS Bestand, 
+    CASE 
+        WHEN i.mTime > i.cTime THEN 'Gewijzigd' 
+        ELSE 'Origineel' 
+    END AS Status 
+FROM Abs.LibraryFolders f 
+INNER JOIN Abs.LibraryItems i ON f.id = i.libraryFolderId 
+ORDER BY f.path ASC, i.title ASC;
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Hoeveel MB of GB aan data staat op elke schijf/folder?
+Tabel `Abs.LibraryFolders` via LEFT JOIN naar `Abs.LibraryItems`.
+Groepeer per hoofdmap (getrimde `path`). Toon `AantalItems` (`COUNT`).
+Bereken the `TotaleGrootte` via `SUM(CAST(i.size AS BIGINT))`. Vervang lege foldervolumes via `ISNULL` the sum naar 0 (voor de outer join fallback).
+Sorteer aflopend op de totale bestandsgrootte.
+
+**Gewenst resultaat**
+| | HoofdMap | AantalItems | TotaleGrootte |
+|---|---|---|---|
+| 1 | /mnt/pool4/Audiobooks/M4B | 1356 | 648603735183 |
+| 2 | /mnt/pool4/Podcasts | 21 | 61926802123 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 4
+SELECT TOP 10
+    TRIM(f.path) AS HoofdMap, 
+    COUNT(i.id) AS AantalItems, 
+    ISNULL(SUM(CAST(i.size AS BIGINT)), 0) AS TotaleGrootte 
+FROM Abs.LibraryFolders f 
+LEFT JOIN Abs.LibraryItems i ON f.id = i.libraryFolderId 
+GROUP BY f.path 
+ORDER BY TotaleGrootte DESC;
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Wat was de titel van the allerlaatst aangepaste/gemodificeerde (recentste) document op the bestandssysteem?
+Haal in `Abs.LibraryItems` in een Subquery op the MAX value van de `mTime` kolom in het hele systeem, en match deze om de originele getrimde titel te tonen (met `DISTINCT`!).
+Sorteer niet in deze query (er hoort normaliter the result).
+
+**Gewenst resultaat**
+| | BestandNaam |
+|---|---|
+| 1 | Harry Potter and the Deathly Hallows |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 5
+SELECT DISTINCT
+    TRIM(title) AS BestandNaam
+FROM Abs.LibraryItems 
+WHERE mTime = (SELECT MAX(mTime) FROM Abs.LibraryItems);
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Haal de 5 recentst ontdekte (birthTime is niet NULL) bestanden uit `Abs.LibraryItems`. We willen in dit query-rapport the aantal dagen sinds de ontdekking meten tegen de datum van 1 Augustus 2026.
+Bereken het absolute verschil in the unit `DAY` (`DagenSindsCreatie`) op the basis van `'2026-08-01'` en `birthTime`.
+Sorteer van nieuwst naar oudst (kortste dagen geleden bovenaan).
+
+**Gewenst resultaat**
+| | Bestand | DagenSindsCreatie |
+|---|---|---|
+| 1 | The Tapestry of Fate | 81 |
+| 2 | Harry Potter and the Deathly Hallows | 81 |
+| 3 | Locke Lamora and the Bottled Serpent | 82 |
+| 4 | Eden Sank to Grief | 87 |
+| 5 | Out Law | 88 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 6
+SELECT TOP 5 
+    TRIM(title) AS Bestand, 
+    DATEDIFF(DAY, birthTime, '2026-08-01') AS DagenSindsCreatie 
+FROM Abs.LibraryItems 
+WHERE birthTime IS NOT NULL
+ORDER BY DagenSindsCreatie ASC;
+

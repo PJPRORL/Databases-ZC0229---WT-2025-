@@ -1,0 +1,206 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie K (Uitgevers & Metadata)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Werk de tabel `Abs.Books` bij. Voor alle boeken waarbij de uitgever (`publisher`) niet is ingevuld (NULL is), wijzig je deze naar 'Eigen Beheer'.
+
+**1.2 Data Definition Language**
+Voeg een check constraint toe aan `Abs.BookSeries`. Een boek in een reeks mag niet negatief genummerd zijn; de `sequence` kolom moet groter of gelijk zijn aan 1. Noem deze constraint `CHK_sequence_positive`.
+
+#!sql-SqlServer
+
+-- 1.1 Vervanging
+UPDATE Abs.Books
+SET publisher = 'Eigen Beheer'
+WHERE publisher IS NULL;
+
+-- 1.2 Aanbrengen CK
+ALTER TABLE Abs.BookSeries
+ADD CONSTRAINT CHK_sequence_positive CHECK (sequence >= 1);
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Toon een metadata overzicht via de tabel `Abs.Books`. Filter enkel op boeken die wél een `isbn` nummer hebben (`IS NOT NULL`).
+Geef in je overzicht:
+- De getrimde titel als `BoekTitel`.
+- De `publisher` in HOOFDLETTERS (als `Uitgeverij`). Indien NULL, zet hier 'ONBEKEND' via `ISNULL`.
+- Gebruik de `REPLACE` functie om alle streepjes (`-`) uit de `isbn` kolom te halen en plak de overgebleven cijfers als `ISBN_Nummer`.
+
+Sorteer op de boektitel alfabetisch oplopend en toon de TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | BoekTitel | Uitgeverij | ISBN_Nummer |
+|---|---|---|---|
+| 1 | A Brief History of Chronomancy | PODIUM AUDIO | 9781039445505 |
+| 2 | A Crown so Silver | LITTLE, BROWN & COMPANY | 9781405564151 |
+| 3 | A Far Better Thing | MACMILLAN | 9781250401878 |
+| 4 | A Feather so Black | LITTLE, BROWN & COMPANY | 9781405558051 |
+| 5 | A Natural History of Dragons | MACMILLAN | 9781427243904 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 2
+SELECT TOP 10 
+    TRIM(title) AS BoekTitel,
+    UPPER(ISNULL(publisher, 'ONBEKEND')) AS Uitgeverij,
+    REPLACE(isbn, '-', '') AS ISBN_Nummer
+FROM Abs.Books
+WHERE isbn IS NOT NULL
+ORDER BY title ASC;
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+We kijken naar de boeken, hun tags, en of ze een lange beschrijving hebben. Combineer hiervoor `Abs.Books`, `Abs.BookTags` en `Abs.Tags`.
+Toon de boek titel (getrimd) als `BoekTitel` en tagnaam (getrimd) als `TagNaam`.
+Bouw een `BeschrijvingType` kolom via CASE op basis van de lengte van de beschrijving in het boek. Omdat beschrijvingen leeg kunnen zijn, controleer de `description` via de formule: `LEN(ISNULL(b.description, ''))`.
+- Als de lengte korter is dan 100 karakters: 'Korte Info'
+- Anders: 'Lange Info'
+
+Sorteer oplopend op boektitel (TOP 10).
+
+**Gewenst resultaat (eerste 5)**
+| | BoekTitel | TagNaam | BeschrijvingType |
+|---|---|---|---|
+| 1 | A Blight of Blackwings | Epic | Lange Info |
+| 2 | A Blight of Blackwings | Paranormal & Urban | Lange Info |
+| 3 | A Blight of Blackwings | Fantasy | Lange Info |
+| 4 | A Blight of Blackwings | Action & Adventure | Lange Info |
+| 5 | A Blight of Blackwings | Paranormal | Lange Info |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 3
+SELECT TOP 10
+    TRIM(b.title) AS BoekTitel,
+    TRIM(t.name) AS TagNaam,
+    CASE 
+        WHEN LEN(ISNULL(b.description, '')) < 100 THEN 'Korte Info'
+        ELSE 'Lange Info'
+    END AS BeschrijvingType
+FROM Abs.Books b
+INNER JOIN Abs.BookTags bt ON b.id = bt.bookId
+INNER JOIN Abs.Tags t ON bt.tagId = t.id
+ORDER BY b.title ASC;
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Wat zijn de prestaties per uitgever (`publisher`)?
+Groepeer in de `Abs.Books` tabel op uitgever. Toon de uitgever (`Uitgeverij`), vervang lege uitgevers met 'Eigen Beheer' (via `ISNULL`).
+Bereken hoeveel boeken deze uitgever uitbracht (`AantalBoeken`) en bereken het *gemiddelde luisterduur* (`AVG` op `duration`). Let op: cast je `duration` eerst naar `FLOAT` en pas daarna de `ROUND(..., 2)` functie toe, zodat het exact afrondt op 2 decimalen (als `GemiddeldeDuur`).
+Gebruik een `HAVING` statement om enkel de uitgevers te tonen die **strikt meer dan 2 boeken** op ons platform hebben staan!
+Sorteer op aantal boeken (aflopend). Toon de top 10.
+
+**Gewenst resultaat**
+| | Uitgeverij | AantalBoeken | GemiddeldeDuur |
+|---|---|---|---|
+| 1 | Audible | 155 | 48093.26 |
+| 2 | Macmillan | 139 | 68276.68 |
+| 3 | Independently published | 101 | 100.96 |
+| 4 | Harper | 65 | 55487.36 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 4
+SELECT TOP 10
+    ISNULL(publisher, 'Eigen Beheer') AS Uitgeverij,
+    COUNT(id) AS AantalBoeken,
+    ROUND(AVG(CAST(duration AS FLOAT)), 2) AS GemiddeldeDuur
+FROM Abs.Books
+GROUP BY publisher
+HAVING COUNT(id) > 2
+ORDER BY AantalBoeken DESC;
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Welke boeken (unieke titels als `BoekTitel`) zijn gepubliceerd door de uitgever die het aller-meeste boeken heeft gepubliceerd?
+Zet dit op met een Subquery binnen `Abs.Books` op de kolom `publisher`. In je subquery zoek je naar de `TOP 1 publisher` na een groepering op `publisher`, waarbij je de groepen sorteert op `COUNT(id) DESC`!
+Toon the TOP 10 boektitels alfabetisch oplopend.
+
+**Gewenst resultaat**
+| | BoekTitel |
+|---|---|
+| 1 | A Crucible of Souls |
+| 2 | A Dragon of a Different Color |
+| 3 | A Killing Frost |
+| 4 | A Pilgrimage of Swords |
+| 5 | A Red-Rose Chain |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 5
+SELECT DISTINCT TOP 10
+    TRIM(title) AS BoekTitel
+FROM Abs.Books
+WHERE publisher IN (
+    SELECT TOP 1 publisher 
+    FROM Abs.Books 
+    GROUP BY publisher 
+    ORDER BY COUNT(id) DESC
+)
+ORDER BY BoekTitel;
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Wat zijn de oudst gepubliceerde boeken op het platform? Bekijk `publishedYear` in `Abs.Books` en filter lege velden eruit (`IS NOT NULL`).
+Bereken het verschil tussen het jaar 2026 en dit jaar om the `LeeftijdInJaren` te tonen.
+Toon `BoekTitel` en hun `PublicatieJaar`. Sorteer op publicatiejaar (oplopend). Toon de top 5.
+
+**Gewenst resultaat**
+| | BoekTitel | PublicatieJaar | LeeftijdInJaren |
+|---|---|---|---|
+| 1 | Blocked | 101 | 1925 |
+| 2 | The Wayward Paths of Sir Bevalor | 101 | 1925 |
+| 3 | Fiction River A Fantasy Bundle | 101 | 1925 |
+| 4 | Rat-Catcher | 101 | 1925 |
+| 5 | The Telling | 2000 | 26 |
+
+#!sql-SqlServer
+
+-- Antwoord - Vraag 6
+SELECT TOP 5 
+    TRIM(title) AS BoekTitel,
+    publishedYear AS PublicatieJaar,
+    (2026 - publishedYear) AS LeeftijdInJaren
+FROM Abs.Books
+WHERE publishedYear IS NOT NULL
+ORDER BY publishedYear ASC;
+

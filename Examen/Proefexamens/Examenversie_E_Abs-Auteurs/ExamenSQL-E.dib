@@ -1,0 +1,173 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie E (Abs Bibliotheek)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Update de tabel `Books` in het `Abs` schema. Verhoog de `duration` (speelduur) van alle boeken die gepubliceerd zijn vóór 2000 (`publishedYear < 2000`) met 10 eenheden.
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `Books` zodat de `duration` groter of gelijk aan 0 moet zijn. Noem de constraint `CHK_duration_Books`.
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Selecteer alle boeken (`Abs.Books`).
+Geef in je overzicht:
+- Een kolom `BoekInfo` die is opgebouwd uit de titel van het boek en het publicatiejaar tussen haakjes (bijv. "Boektitel (2020)"). Gebruik `ISNULL(CAST(publishedYear AS VARCHAR), 'Onbekend')` indien het jaar niet is ingevuld.
+- Een kolom `ToegevoegdOp` gebaseerd op de `createdAt` datum in de format `dd-MM-yyyy`.
+- Een kolom `Taal` die de `language` in hoodletters (`UPPER`) weergeeft, en 'ONBEKEND' toont als de taal NULL is.
+
+Sorteer op de originele titel alfabetisch (`title` ASC) en toon enkel de top 10.
+
+**Gewenst resultaat (eerste 10)**
+| | BoekInfo | ToegevoegdOp | Taal |
+|---|---|---|---|
+| 1 | A Blight of Blackwings (2020) | 20-05-2024 | ENGLISH |
+| 2 | A Brief History of Chronomancy (2025) | 02-04-2025 | ENGLISH |
+| 3 | A Conjuring of Light (2017) | 20-05-2024 | ENGLISH |
+| 4 | A Crown of Swords (2006) | 20-05-2024 | ENGLISH |
+| 5 | A Crown so Silver (2025) | 22-01-2025 | ENGLISH |
+| 6 | A Crucible of Souls (2015) | 20-05-2024 | ENGLISH |
+| 7 | A Curse of Krakens (2023) | 20-05-2024 | ENGLISH |
+| 8 | A Darker Shade of Magic (2020) | 20-05-2024 | ENGLISH |
+| 9 | A Dead Djinn in Cairo (2019) | 20-05-2024 | ENGLISH |
+| 10 | A Desolation Called Peace (2021) | 20-05-2024 | ENGLISH |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+Toon een overzicht van boeken (`Abs.Books`), en hun auteur(s) (`Abs.Authors`). Gebruik de tussentabel `Abs.BookAuthors`.
+Toon: de getrimde `title` (`BoekTitel`) en getrimde `name` van de auteur (`AuteurNaam`).
+Maak een `DuurCategorie` via een CASE statement op basis van `duration`:
+- Kleiner dan 36000: `Kort`
+- Tussen 36000 en 72000 (kleiner dan): `Gemiddeld`
+- Anders: `Lang`
+
+Sorteer van langste duur naar kortste. Toon de TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | BoekTitel | AuteurNaam | DuurCategorie |
+|---|---|---|---|
+| 1 | Wind and Truth | Brandon Sanderson | Lang |
+| 2 | Rhythm of War | Brandon Sanderson | Lang |
+| 3 | Oathbringer | Brandon Sanderson | Lang |
+| 4 | Words of Radiance | Brandon Sanderson | Lang |
+| 5 | The Way of Kings | Brandon Sanderson | Lang |
+| 6 | The Doors of Midnight | R.R. Virdi | Lang |
+| 7 | The Wandering Inn | Pirate Aba | Lang |
+| 8 | The Wise Man's Fear | Patrick Rothfuss | Lang |
+| 9 | The Navigator's Children | Tad Williams | Lang |
+| 10 | Kingdom Blades | Melissa McPhail | Lang |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Overzicht per auteur (`Abs.Authors`): hoeveel boeken (`AantalBoeken`) heeft elke auteur en wat is de totale luistertijd (som van `duration` via `Abs.Books`, aliased als `TotaleDuur`).
+Gebruik outer joins zodat auteurs zonder boeken er ook bij staan (toon `TotaleDuur` dan als 0 in plaats van NULL).
+Groepeer per auteur (`name` getrimd) en sorteer op `AantalBoeken` aflopend. Toon de top 10.
+
+**Gewenst resultaat (eerste 10)**
+| | AuteurNaam | AantalBoeken | TotaleDuur |
+|---|---|---|---|
+| 1 | Seanan McGuire | 139 | 1769244.8101550001 |
+| 2 | Brandon Sanderson | 49 | 3154752.7300000004 |
+| 3 | Ursula K. Le Guin | 28 | 257680.53 |
+| 4 | Will Wight | 27 | 1109348.3960000002 |
+| 5 | Jim Butcher | 25 | 1141375.5930000001 |
+| 6 | Robert Jordan | 23 | 2271490.4480000003 |
+| 7 | Patricia Briggs | 23 | 810105.799 |
+| 8 | Michael J. Sullivan | 20 | 739837.67799999996 |
+| 9 | Faith Hunter | 20 | 858350.93000000005 |
+| 10 | Brian McClellan | 19 | 353727.83695899998 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Welke auteur (`Abs.Authors`) schreef het absolute langste luisterboek uit de bibliotheek?
+Gebruik subqueries via de koppeltabel `Abs.BookAuthors` om deze specifieke auteur te vinden: degene gekoppeld aan het boek wiens `duration` in `Abs.Books` gelijk is aan de `MAX(duration)`.
+Zorg voor unieke records met `DISTINCT` en toon de `AuteurNaam`.
+
+**Gewenst resultaat**
+| | AuteurNaam |
+|---|---|
+| 1 | Brandon Sanderson |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Wat zijn de 5 oudste geregistreerde auteurs in de bibliotheek? (Op basis van de `createdAt` kolom in `Abs.Authors`).
+Bereken het aantal dagen tussen hun registratiedatum en 1 augustus 2026 (`'2026-08-01'`) als `DagenSindsAanmaak`.
+Sorteer aflopend op dagen.
+
+**Gewenst resultaat (eerste 5)**
+| | AuteurNaam | DagenSindsAanmaak |
+|---|---|---|
+| 1 | Diana Gabaldon | 1256 |
+| 2 | Erin Morgenstern | 1256 |
+| 3 | Steven Michael Bohls | 1256 |
+| 4 | C. L. Clark | 1256 |
+| 5 | Django Wexler | 1256 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+

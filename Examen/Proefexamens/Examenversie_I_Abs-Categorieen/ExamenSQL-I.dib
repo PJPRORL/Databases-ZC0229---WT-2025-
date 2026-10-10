@@ -1,0 +1,180 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie I (Categorieën & Tags)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Werk de tabel `Abs.Genres` bij. Zet een '* ' (sterretje en spatie) vooraan bij alle genre namen die momenteel starten met een 'S' (bijv. "Science Fiction" wordt dan "* Science Fiction"). Tip: Gebruik `LIKE` en string concatenatie.
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `Abs.Tags` zodat de lengte van elke tagnr (`name`) groter is dan 2 (`LEN(name) > 2`). Noem deze constraint `CHK_TagName`.
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Selecteer een overzicht van tags uit `Abs.Tags`. 
+- Toon de naam van de tag (`name`) en een verkorte versie genaamd `KorteTag`.
+- De `KorteTag` bestaat enkel uit de **eerste 5 letters** van de tagnaam (maak hiervoor gebruik van `SUBSTRING` of `LEFT`).
+- Sorteer alfabetisch oplopend op de tagnaam.
+- Toon de TOP 10 resultaten.
+
+**Gewenst resultaat (eerste 10)**
+| | name | KorteTag |
+|---|---|---|
+| 1 | Action & Adventure | Actio |
+| 2 | Artificial Intelligence | Artif |
+| 3 | Assasins | Assas |
+| 4 | Biographical Fiction | Biogr |
+| 5 | Biotechnology | Biote |
+| 6 | Classic | Class |
+| 7 | Comedy | Comed |
+| 8 | Coming Of Age | Comin |
+| 9 | Cozy Fantasy | Cozy  |
+| 10 | Cultural Heritage | Cultu |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+Welke genres hangen er vast aan de kortere of langere boeken? 
+Haal informatie uit `Abs.Books`, `Abs.BookGenres` en `Abs.Genres`.
+Toon de boek titel (getrimd) en de genre naam (`GenreNaam`).
+- Bepaal een `GenreType` categorie op basis van de duur (`duration`) van het boek (uit `Books`).
+- Als de duur kleiner is dan 36.000: 'Kort Genre'
+- Anders: 'Lang Genre'
+
+Sorteer op titel alfabetisch. Toon TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | BoekTitel | GenreNaam | GenreType |
+|---|---|---|---|
+| 1 | A Blight of Blackwings | Fantasy | Kort Genre |
+| 2 | A Blight of Blackwings | Epic | Kort Genre |
+| 3 | A Brief History of Chronomancy | Science Fiction & Fantasy | Lang Genre |
+| 4 | A Brief History of Chronomancy | Action & Adventure | Lang Genre |
+| 5 | A Brief History of Chronomancy | Fantasy | Lang Genre |
+| 6 | A Brief History of Chronomancy | Fiction | Lang Genre |
+| 7 | A Conjuring of Light | Fantasy | Lang Genre |
+| 8 | A Conjuring of Light | Action & Adventure | Lang Genre |
+| 9 | A Crown of Swords | Action & Adventure | Lang Genre |
+| 10 | A Crown of Swords | Epic | Lang Genre |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Hoeveel boeken horen er bij elk genre? 
+Geef de genre naam (`GenreNaam`) (vanuit `Abs.Genres`) en tel het `AantalBoeken` door een koppeling via `BookGenres` naar `Abs.Books`.
+**Belangrijke filtering**: Gebruik een `HAVING` statement na je groep om alléén die genres te tonen die **strikt meer dan 5** gekoppelde boeken bevatten.
+Sorteer op `AantalBoeken` aflopend. Toon top 10.
+
+**Gewenst resultaat (eerste 10)**
+| | GenreNaam | AantalBoeken |
+|---|---|---|
+| 1 | Fantasy | 784 |
+| 2 | Epic | 319 |
+| 3 | Action & Adventure | 210 |
+| 4 | Science Fiction | 81 |
+| 5 | Urban | 51 |
+| 6 | Historical | 49 |
+| 7 | Paranormal | 48 |
+| 8 | Fiction | 47 |
+| 9 | Military | 41 |
+| 10 | Classic | 41 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Welke categorieën (`Tags`) zijn gekoppeld aan het allerlangste boek?
+Gebruik hiervoor geneste subqueries om dit uit te zoeken in `Abs.Tags` en `Abs.BookTags`.
+(Je gebruikt subqueries in een cascade vanuit `Tags` -> `BookTags` -> `Books`, en checkt of de `duration` gelijk is aan de `MAX(duration)` op het platform).
+Toon de getrimde naam als `TagNaam`, en wees zeker dat ze uniek zijn (`DISTINCT`).
+
+**Gewenst resultaat**
+| | TagNaam |
+|---|---|
+| 1 | Action & Adventure |
+| 2 | Epic |
+| 3 | Fantasy |
+| 4 | Genre Fiction |
+| 5 | Historical |
+| 6 | Needs Checking |
+| 7 | War & Military |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Toon de 5 langste boeken op het platform. (Haal deze via `Abs.Books`).
+In plaats van de raw `duration`, geef je deze waarde in minuten (als `DuurInMinuten`).
+Je bekomt dit door `duration` te delen door 60. Gebruik bovendien de wiskundige operator `CEILING` (of `CEIL`) om de waarde altijd af te ronden naar boven (zorg dat je deelt door `60.0` om kommagetallen te forceren vóór de afronding!). Zorg dat `duration > 0` om foute metingen eruit te halen.
+Sorteer de TOP 5 op dit aantal minuten dalend.
+
+**Gewenst resultaat**
+| | BoekTitel | DuurInMinuten |
+|---|---|---|
+| 1 | Wind and Truth | 3771 |
+| 2 | Rhythm of War | 3448 |
+| 3 | Oathbringer | 3307 |
+| 4 | Words of Radiance | 2894 |
+| 5 | The Way of Kings | 2731 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+

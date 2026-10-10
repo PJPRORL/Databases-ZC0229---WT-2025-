@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Takenlijst Databaseproject</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="css/stijl.css">
+<style>body { margin: 0; } [hidden] { display: none !important; }</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Takenlijst Databaseproject</h1>
+      <p class="sub" id="ondertitel"></p>
+    </div>
+    <div class="totaal">
+      <div class="totaal-regel">
+        <strong><span id="tot-klaar" class="num">0</span> van <span id="tot-alle" class="num">0</span> taken gedaan</strong>
+        <span class="opslag" id="opslag" data-mode="ok"><i></i><span id="opslag-tekst">Bewaard in deze browser</span></span>
+      </div>
+      <div class="balk" aria-hidden="true"><span id="tot-balk"></span></div>
+    </div>
+    <div class="delen" id="delen"></div>
+    <div class="backup">
+      <button type="button" class="knop" id="export">Back-up opslaan</button>
+      <button type="button" class="knop" id="import">Back-up terugzetten</button>
+      <input type="file" id="import-bestand" accept="application/json,.json" hidden>
+      <span class="backup-info" id="backup-info">Je vinkjes, notities en deadlines staan in deze browser. Sla af en toe een back-up op.</span>
+    </div>
+  </header>
+
+  <nav aria-label="Onderdelen">
+    <div class="chips" id="chips"></div>
+    <div class="filter" role="group" aria-label="Toon">
+      <button type="button" data-f="alles" aria-pressed="true">Alles</button>
+      <button type="button" data-f="open" aria-pressed="false">Open</button>
+      <button type="button" data-f="klaar" aria-pressed="false">Gedaan</button>
+    </div>
+  </nav>
+
+  <div class="uitleg">
+    <p><strong>Zo gebruik je deze lijst.</strong> Vink een taak af zodra ze klaar is. Bij elke taak staat wat je doet en waar het in de leerstof staat (H1 tot H14, de opgave of het sjabloon). Met <em>Notitie</em> schrijf je er iets bij, bijvoorbeeld een beslissing of het antwoord van je leerkracht.</p>
+    <p>De taakcodes zijn dezelfde als in het Word-document <em>Databaseproject_Haalbaarheid_en_Takenlijst_V1</em>. Daar staat ook de haalbaarheidscontrole, met per eis de taken die ze afdekken.</p>
+    <p>De lijst zegt wat je moet doen, nooit hoe je model eruitziet: er staan geen entiteiten, attributen, relaties of queries in.</p>
+  </div>
+
+  <main id="secties"></main>
+
+  <footer id="voet"></footer>
+</div>
+<script src="js/taken.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

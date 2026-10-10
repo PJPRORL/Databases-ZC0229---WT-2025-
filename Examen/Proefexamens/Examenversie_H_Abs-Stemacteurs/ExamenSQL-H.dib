@@ -1,0 +1,165 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"sql-SqlServer","languageName":"T-SQL"},{"name":"value"}]}}
+
+#!csharp
+
+// Deze code laad de Polygot plugin die nodig is om te communiceren met SQL Server.
+// Voer deze code uit voordat je SQL Server gerelateerde cellen uitvoert.
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer, *-*"
+
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Commands;
+
+var shortName = "SqlServer";             
+var fullName  = $"sql-{shortName}";
+
+var kernels = Kernel.Root.FindKernels(k => k.Name == fullName);
+
+// Setup connectie
+if (!kernels.Any())
+{
+    await Kernel.Root.SendAsync(new SubmitCode(
+        @"#!connect mssql --kernel-name SqlServer --connection-string ""Server=localhost,1433;Database=examen;User Id=sa;Password=Pass.Word;TrustServerCertificate=True;"""
+    ));
+}
+
+#!markdown
+
+# Examen SQL - Versie H (Stemacteurs & Apparaten)
+### Vraag 1 (8 punten)
+**1.1 Data Manipulation Language**
+Werk de tabel `Abs.Devices` bij. Verander de `clientName` naar 'Onbekend' in elke record waar de huidige waarde in `clientName` gelijk is aan de tekst 'Unknown'.
+
+**1.2 Data Definition Language**
+Voeg een constraint toe aan de tabel `Abs.Narrators`. Zorg ervoor dat de stemacteur (`name`) altijd op zijn minst 1 karakter bevat (gebruik `LEN(name) > 0`). Noem deze `CHK_Narrator_Name`.
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 2 (8 punten)
+Toon een overzicht van verbonden apparaten (`Abs.Devices`) uit het lokale netwerk (`ipAddress LIKE '192.168.%'`).
+Geef in je overzicht:
+- Een gecombineerde `Apparaat` kolom in het formaat: "Naam (vVersie)" (bijv. "Abs Web (v1.0)"). Gebruik `ISNULL(clientVersion, '0.0')` als deze versie ontbreekt.
+- De originele kolom `ipAddress` (als `IPAdres`).
+- De `createdAt` kolom (als `Toegevoegd`), geformatteerd als `dd-MM-yyyy`.
+
+Sorteer op `Toegevoegd` aflopend. Toon top 10.
+
+**Gewenst resultaat**
+| | Apparaat | IPAdres | Toegevoegd |
+|---|---|---|---|
+| 1 | Abs Web (v2.6.0) | 192.168.1.84 | 10-12-2023 |
+| 2 | Absorb (v1.0.0) | 192.168.1.82 | 24-11-2023 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 3 (9 punten)
+Wie zijn de stemacteurs en in welke luistercategorie vallen hun boeken? Combineer `Abs.Narrators`, `Abs.BookNarrators` en `Abs.Books`.
+Toon de getrimde naam van de stemacteur (`StemActeur`) en de boek titel (`BoekTitel`).
+Bouw een categorie `StemWerk` op basis van de `duration` (duur) in `Books`:
+- Kleiner dan 50.000: `Normaal`
+- Kleiner dan 100.000: `Lang`
+- Alle overigen: `Episch`
+
+Sorteer op boekduur dalend. Toon top 10.
+
+**Gewenst resultaat (eerste 10)**
+| | StemActeur | BoekTitel | StemWerk |
+|---|---|---|---|
+| 1 | Michael Kramer | Wind and Truth | Episch |
+| 2 | Kate Reading | Wind and Truth | Episch |
+| 3 | Michael Kramer | Rhythm of War | Episch |
+| 4 | Kate Reading | Rhythm of War | Episch |
+| 5 | Kate Reading | Oathbringer | Episch |
+| 6 | Michael Kramer | Oathbringer | Episch |
+| 7 | Michael Kramer | Words of Radiance | Episch |
+| 8 | Kate Reading | Words of Radiance | Episch |
+| 9 | Michael Kramer | The Way of Kings | Episch |
+| 10 | Kate Reading | The Way of Kings | Episch |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 4 (9 punten)
+Statistiek per stemacteur (`Abs.Narrators`). Hoeveel boeken (`AantalBoeken`) lazen ze in, en wat is de totale lengte (`TotaleLuistertijd`, als de som van de `duration` in `Abs.Books`)?
+Gebruik outer joins zodat actieve stemacteurs zonder gekoppelde boeken hun `TotaleLuistertijd` als 0 tonen (via `ISNULL`).
+Groepeer per getrimde stemacteur naam (`StemActeur`). Sorteer op `AantalBoeken` dalend. Toon TOP 10.
+
+**Gewenst resultaat (eerste 10)**
+| | StemActeur | AantalBoeken | TotaleLuistertijd |
+|---|---|---|---|
+| 1 | James Marsters | 21 | 1018318.5280000001 |
+| 2 | Tim Gerard Reynolds | 21 | 808972.67800000007 |
+| 3 | Lorelei King | 19 | 639371.49399999995 |
+| 4 | Travis Baldree | 16 | 620358.396 |
+| 5 | Christian Rodska | 16 | 973685.22800000012 |
+| 6 | Michael Kramer | 16 | 1349071.4249999998 |
+| 7 | Mary Robinette Kowal | 16 | 185694.06200000001 |
+| 8 | Jefferson Mays | 11 | 754593.71900000004 |
+| 9 | Andrea Parsneau | 11 | 1481971.05 |
+| 10 | Oliver Wyman | 10 | 569302.39999999988 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 5 (8 punten)
+Welke stemacteur (`Narrators`) heeft het allerkortste (maar geldige) boek ingesproken?
+Gebruik subqueries! Zoek naar boek id's in `Abs.BookNarrators` die verwijzen naar het boek in `Abs.Books` waarvan de `duration` exact overeenkomt met de `MIN(duration)` in de tabellen (opletten: zorg in je subquery op Books dat je enkel boeken onderzoekt waar de duration *groter is dan 0*).
+Selecteer enkel de getrimde naam van de stemacteur (als `StemActeur`) en zorg dat het resultaat uniek (`DISTINCT`) is.
+
+**Gewenst resultaat**
+| | StemActeur |
+|---|---|
+| 1 | Full Cast |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
+
+#!markdown
+
+### Vraag 6 (4 punten)
+Wat zijn de 5 nieuwste geregistreerde apparaten (`Devices`) gemeten ten opzichte van 1 augustus 2026 (`'2026-08-01'`)?
+Gebruik `DATEDIFF` op de `createdAt` kolom om dit in aantal dagen te berekenen (`DagenOud`).
+Toon de getrimde `clientName` (als `ApparaatNaam`) en `DagenOud`. Sorteer oplopend op aantal dagen oud. Toon TOP 5.
+
+**Gewenst resultaat**
+| | ApparaatNaam | DagenOud |
+|---|---|---|
+| 1 | Abs Web | 84 |
+| 2 | Absorb | 97 |
+| 3 | Absorb | 123 |
+| 4 | Abs Web | 123 |
+| 5 | Absorb | 124 |
+
+#!sql-SqlServer
+
+-- Vul hier je oplossing in
+
+
