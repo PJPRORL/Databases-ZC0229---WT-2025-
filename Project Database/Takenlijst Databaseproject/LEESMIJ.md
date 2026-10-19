@@ -24,6 +24,6 @@ Je vinkjes, notities en deadlines worden bewaard in de browser waarin je de pagi
 | `js/taken.js` | alle taken met hun code, uitleg en bron |
 | `js/app.js` | afvinken, notities, deadlines en back-up |
 
-De taakcodes (V01, E12, S20 …) zijn dezelfde als in `Databaseproject_Haalbaarheid_en_Takenlijst_V1.docx`.
+De taakcodes (V01, E12, S20 …) zijn dezelfde als in `Databaseproject Bouwcontrole V2.docx`.
 
 Zonder internet werkt alles; alleen het lettertype valt dan terug op een standaardlettertype.

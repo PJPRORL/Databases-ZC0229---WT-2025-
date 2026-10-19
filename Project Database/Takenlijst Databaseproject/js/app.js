@@ -131,6 +131,7 @@
         el("div", { class: "sectie-kop" }, titel, el("p", { text: s.intro }),
           el("div", { class: "sectie-stand" }, el("div", { class: "balk" }, balk), stand)));
       refs.sectieStand[s.id] = { stand, balk };
+      if (s.bevindingen) sec.append(maakBevindingen(s.bevindingen));
       for (const g of s.groepen) {
         const telling = el("span", { class: "num" });
         const leeg = el("div", { class: "verborgen-leeg", text: "Niets te tonen met deze filter." });
@@ -153,6 +154,20 @@
     const kiezer = document.getElementById("import-bestand");
     document.getElementById("import").addEventListener("click", () => kiezer.click());
     kiezer.addEventListener("change", () => { if (kiezer.files[0]) importeer(kiezer.files[0]); kiezer.value = ""; });
+  }
+
+  function maakBevindingen(bv) {
+    const lijst = (kop, rijen) => {
+      const ul = el("dl", { class: "bv-lijst" });
+      for (const [k, v] of rijen) ul.append(el("dt", { text: k }), el("dd", { text: v }));
+      return el("div", { class: "bv-blok" }, el("h3", { text: kop }), ul);
+    };
+    return el("div", { class: "bevindingen" },
+      el("p", { class: "bv-oordeel" }, el("strong", { text: "Oordeel: " }), bv.oordeel),
+      el("div", { class: "bv-kolommen" },
+        lijst("Wat je lijst je al geeft", bv.geeft),
+        lijst("Wat er niet in staat en je zelf toevoegt", bv.ontbreekt)),
+      el("p", { class: "bv-letop" }, el("strong", { text: "Let op. " }), bv.letop));
   }
 
   function maakRij(t, s) {

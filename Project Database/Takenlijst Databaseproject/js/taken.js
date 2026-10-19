@@ -2,7 +2,7 @@
 window.TAKEN = {
  "titel": "Takenlijst Databaseproject",
  "ondertitel": "Projectopgave Databases WT · ERD, SQL en NoSQL · met Bouwcontrole als bron",
- "versie": "V1 · 10 oktober 2026",
+ "versie": "V2 · 10 oktober 2026",
  "secties": [
   {
    "id": "v",
@@ -83,6 +83,181 @@ window.TAKEN = {
        "u": "Noteer vanaf dag één elke keuze die verwarring kan geven, met de reden erbij. De opgave laat uitdrukkelijk een README.md of Word-document toe om je keuzes te verantwoorden. Achteraf reconstrueren waarom je iets deed, lukt veel slechter.",
        "b": "Opgave · Verduidelijkingen",
        "id": "V10"
+      }
+     ]
+    },
+    {
+     "naam": "Repo en back-up",
+     "taken": [
+      {
+       "t": "Controleer de repo-koppeling in push_to_github.bat.",
+       "u": "Je Database-map is gekoppeld aan PJPRORL/Databases-ZC0229---WT-2025-, branch main. Het script koppelt een map zonder .git-map echter aan PJPRORL/Database-Course. Nu speelt dat niet, omdat de koppeling al bestaat. Verdwijnt de .git-map ooit, dan pusht het script naar een andere repo. Pas de naam in het script aan als je dat wilt vermijden.",
+       "b": "push_to_github.bat · stand 10 oktober",
+       "id": "V11"
+      },
+      {
+       "t": "Beslis wat er met de twee geneste repo's van de school moet gebeuren.",
+       "u": "db-document-library en db-document-titanic in Cursus/Oefeningen/Database scripts zijn gekoppeld aan gitpub.pit-graduaten.be. Het script verwijdert elke geneste .git-map. Na een push zijn die mappen niet meer met de server van de school verbonden. Gebruik je ze om updates binnen te halen, dan valt dat weg.",
+       "b": "push_to_github.bat",
+       "id": "V12"
+      },
+      {
+       "t": "Zorg dat tijdelijke Word-bestanden niet mee gecommit worden.",
+       "u": "Bestanden die met ~$ beginnen, maakt Word aan terwijl een document open staat. Er is geen .gitignore, dus ze gaan mee. Sluit Word voor je pusht, of sluit ze uit met een .gitignore.",
+       "b": "Repo · stand 10 oktober",
+       "id": "V13"
+      },
+      {
+       "t": "Push je werk geregeld naar GitHub.",
+       "u": "De laatste commit dateert van 6 april 2026. Door de herschikking van je mappen sindsdien staan er ruim 300 wijzigingen klaar. Wat niet gepusht is, staat ook niet in de projectbron hier.",
+       "b": "Repo · stand 10 oktober",
+       "id": "V14"
+      },
+      {
+       "t": "Maak geregeld een back-up van je voortgang in het HTML-project.",
+       "u": "Met de knop Back-up opslaan. Je vinkjes staan alleen in de browser waarin je de pagina opent; wis je de browsergegevens, dan ben je ze kwijt.",
+       "b": "Takenlijst Databaseproject · LEESMIJ",
+       "id": "V15"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l",
+   "code": "L",
+   "naam": "Je ERD starten vanuit je attributenlijst",
+   "kort": "Start ERD",
+   "intro": "Je attributenlijst uit het Bouwconflicten-document is een goed vertrekpunt. Deze stappen leggen de lijst naast de synthesemethode. Ze geven richting, geen keuzes voor je model.",
+   "bevindingen": {
+    "oordeel": "Ja: je kunt je ERD maken aan de hand van de attributenlijst in je Bouwconflicten-document, als vertrekpunt.",
+    "geeft": [
+     [
+      "Kandidaat-entiteiten",
+      "de onderdeeltypes waarvoor je eigenschappen bijhoudt."
+     ],
+     [
+      "Attributen per entiteit",
+      "de eigenschappen zelf."
+     ],
+     [
+      "Datatypes",
+      "het soort waarde per eigenschap (H3)."
+     ],
+     [
+      "NA/NNA",
+      "de kolom \"Altijd ingevuld?\"."
+     ]
+    ],
+    "ontbreekt": [
+     [
+      "Entiteiten buiten de onderdelen",
+      "alles wat je bron nog bevat maar niet in de lijst staat. De lijst beschrijft alleen eigenschappen van onderdelen."
+     ],
+     [
+      "Relaties",
+      "welke entiteiten met elkaar verbonden zijn, met aard, connectiviteit en relatiebeschrijving."
+     ],
+     [
+      "Sleutels",
+      "PK, FK en AK, en de plaats van elke foreign key."
+     ],
+     [
+      "Delete-opties",
+      "DTR, DTN of DTC per foreign key."
+     ],
+     [
+      "De verplichte onderdelen van de opgave",
+      "de soort van elke entiteit, minstens één special topic, minstens één enumeratie en de aantallen per soort."
+     ]
+    ],
+    "letop": "De lijst is opgebouwd met de maatstaf van je app: alleen wat een controle nodig heeft. De opgave vraagt dat je je bron zo getrouw mogelijk nabouwt. Kijk dus bij het opstellen of je ERD meer nodig heeft dan wat in de lijst staat (aandachtspunt A04)."
+   },
+   "groepen": [
+    {
+     "naam": "Van lijst naar conceptueel model",
+     "taken": [
+      {
+       "t": "Leg je meest recente attributenlijst klaar.",
+       "u": "Je eigen, bijgewerkte versie uit het Bouwconflicten-document, met alles wat je er zelf aan toevoegde.",
+       "b": "",
+       "id": "L01"
+      },
+      {
+       "t": "Zet de onderdeeltypes uit je lijst op een rij als kandidaat-entiteiten.",
+       "u": "Dat is de eerste stap van de synthesemethode. Beslis per kandidaat of ze op zichzelf bestaat of een andere entiteit verduidelijkt.",
+       "b": "H1 · Synthesemethode · H2 · Soorten entiteiten",
+       "id": "L02"
+      },
+      {
+       "t": "Vul aan met wat je bron bevat maar niet in de lijst staat.",
+       "u": "Je lijst beschrijft alleen eigenschappen van onderdelen. Loop je bron na zoals ze op de werkvloer werkt, en noteer wat je nog nodig hebt om ze getrouw na te bouwen.",
+       "b": "Opgave · A01 · A04",
+       "id": "L03"
+      },
+      {
+       "t": "Bepaal welk special topic uit H12 je lijst al bevat, en welke variant je in het ERD kiest.",
+       "u": "H12 geeft per topic meerdere opties met hun voor- en nadelen. De keuze in je app hoeft niet dezelfde te zijn als in je ERD; verantwoord je ERD-keuze in je README.",
+       "b": "H12 · E34 · E35",
+       "id": "L04"
+      }
+     ]
+    },
+    {
+     "naam": "Van eigenschap naar attribuut",
+     "taken": [
+      {
+       "t": "Zet per eigenschap het soort waarde om naar een datatype.",
+       "u": "Volg H3: alleen een getal als je ermee rekent. Een eenheid hoort bij de eigenschap, niet in de waarde.",
+       "b": "H3 · Datatype bepalen · E29 · E30",
+       "id": "L05"
+      },
+      {
+       "t": "Zet \"Altijd ingevuld?\" om naar NA of NNA.",
+       "u": "Waar je lijst een derde mogelijkheid zoals \"onbekend\" toelaat, beslis je zelf hoe je dat in het ERD noteert. Verantwoord die keuze in je README.",
+       "b": "H3 · Null · E31",
+       "id": "L06"
+      },
+      {
+       "t": "Zoek de eigenschappen die meer dan één waarde dragen.",
+       "u": "In een tabel bevat de kruising van een rij en een kolom maar één waarde. Een eigenschap met meerdere waarden kan dus geen gewoon attribuut zijn. Zoek in H2 en H3 hoe je zoiets modelleert.",
+       "b": "H1 · Tabel, kolom en rij · H2 · H3",
+       "id": "L07"
+      },
+      {
+       "t": "Zoek de eigenschappen met een vaste keuzelijst.",
+       "u": "Gebruik de vuistregel van H3: een enumeratie of een karakteristieke entiteit. Denk ook aan aandachtspunt A02 (20 records per tabel).",
+       "b": "H3 · Zelfgemaakte types · A02",
+       "id": "L08"
+      },
+      {
+       "t": "Laat weg wat geen kenmerk is van de entiteit zelf.",
+       "u": "Berekende gegevens bewaar je niet, en een gegeven dat bij iets anders hoort dan de entiteit zelf, krijgt daar zijn plaats.",
+       "b": "H1 · Procesgegevens · Entiteit en attribuut",
+       "id": "L09"
+      },
+      {
+       "t": "Zet de namen om volgens de ERD-regels.",
+       "u": "Attributen in camelCase, enkelvoud, zonder afkortingen; entiteiten met een hoofdletter en in het enkelvoud. Kies één taal voor het hele model.",
+       "b": "H1 · Naamgeving · E18 · E19 · E21",
+       "id": "L10"
+      }
+     ]
+    },
+    {
+     "naam": "Afstemmen",
+     "taken": [
+      {
+       "t": "Leg je ERD naast de eisen uit de haalbaarheidscontrole.",
+       "u": "Ga na of de aantallen per soort, de 8 en 4 attributen, het special topic en de enumeratie gehaald worden.",
+       "b": "E11 tot E17 · E34 tot E37",
+       "id": "L11"
+      },
+      {
+       "t": "Hou bij waar je ERD afwijkt van je attributenlijst.",
+       "u": "Wat je toevoegde om de bron getrouw na te bouwen, en wat je wegliet. Dat helpt bij het verantwoorden van je keuzes, en later bij taak B04, wanneer je het ERD naar Bouwcontrole terugbrengt.",
+       "b": "A04 · B04",
+       "id": "L12"
       }
      ]
     }
