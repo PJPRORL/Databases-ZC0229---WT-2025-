@@ -1,0 +1,68 @@
+{
+  "takenlijst": "Databaseproject",
+  "versie": 1,
+  "opgeslagen": "2026-10-22T20:15:24.501Z",
+  "staat": {
+    "V04": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "L01": {
+      "klaar": false,
+      "notitie": ""
+    },
+    "V01": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "V02": {
+      "klaar": true,
+      "notitie": "De opdracht zal altijd individueel gebeuren, maar feedback krijgen is niet verboden en noodzakelijk om de opdracht tot een goed einde te brengen. De feedback heeft ook als strikte en vaste regel om enkel te wijzen naar wat juist of fout gaat en hierbij ook geen oplossingen mag geven."
+    },
+    "V03": {
+      "klaar": true,
+      "notitie": "Ik heb als deadline gekozen voor 1 november. Dit voornamelijk omdat ik binnenkort 1 volledige week verlof heb van 26 oktober tot 1 november. Perfect dus om een uitgebreid ERD te bouwen."
+    },
+    "V05": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "V11": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "V12": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "V13": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "V14": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "V15": {
+      "klaar": true,
+      "notitie": ""
+    },
+    "V07": {
+      "klaar": true,
+      "notitie": "Op de C-schijf in de school folder heb ik in de Database leerlijn onder de projecten 3 mappen gemaakt. Elks voor 1 van de onderdelen zoals ERD, SQL en NoSQL. In de ERD folder steekt op dit moment enkel het Bouwcontrole ERD drawio bestand."
+    },
+    "V06": {
+      "notitie": "",
+      "klaar": false
+    },
+    "V10": {
+      "notitie": "Ik ben gestart met het opvullen van mijn readme.md bestand in de database repo op github. Hierin heb ik eerst een voorwoord gemaakt over wat het project is en waarvoor het uiteindelijk zal dienen. Verder staat de start voor het ERD gedeelte ook klaar.",
+      "klaar": true
+    }
+  },
+  "deadlines": {
+    "e": "2026-11-01",
+    "s": "2027-01-12",
+    "n": "2027-01-12"
+  }
+}

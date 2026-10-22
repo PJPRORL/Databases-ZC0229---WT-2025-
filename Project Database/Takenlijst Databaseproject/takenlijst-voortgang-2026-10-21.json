@@ -1,0 +1,60 @@
+{
+  "takenlijst": "Databaseproject",
+  "versie": 1,
+  "opgeslagen": "2026-10-21T17:49:45.027Z",
+  "staat": {
+    "V04": {
+      "notitie": "",
+      "klaar": true
+    },
+    "L01": {
+      "notitie": "",
+      "klaar": false
+    },
+    "V01": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V02": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V03": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V05": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V11": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V12": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V13": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V14": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V15": {
+      "notitie": "",
+      "klaar": true
+    },
+    "V07": {
+      "notitie": "",
+      "klaar": true
+    }
+  },
+  "deadlines": {
+    "e": "2027-01-12",
+    "s": "2027-01-12",
+    "n": "2027-01-12"
+  }
+}
