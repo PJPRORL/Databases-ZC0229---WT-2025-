@@ -2,7 +2,17 @@
 
 Je kan hier alles terugvinden over mijn Database leerlijn. Ik heb hier al de noodzakelijke Theorie, oefeningen en examens opgeslagen. Verder zal je hier ook mijn database project kunnen bekijken in een later stadium van deze readme.
 
-Database Project - Bouwcontrole
+## Inhoud
+
+- [Wat je in deze repo vindt](#wat-je-in-deze-repo-vindt)
+- [Database Project - Bouwcontrole](#database-project---bouwcontrole)
+- [Voortgang](#voortgang)
+- [ERD (Entity Relationschip Diagram)](#erd-entity-relational-diagram)
+- [SQL-schema](#sql-schema)
+- [NoSQL](#nosql)
+
+
+# Database Project - Bouwcontrole
 
 Vanaf dit punt zal ik je het proces tonen van mijn database project waarin ik eerst zal beginnen met het bouwen van een ERD schema voor de Database die ik later zal opzetten voor mijn C# project voor het vak Programming Advanced. Dit zal als ruggengraat dienen om later het ERD gemakkelijk om te kunnen zetten van een tekening (blauwdruk) naar de technische realisatie, zodat een SQL, PostgrSQL of MySQL server later dit kan gebruiken. Ik zal later de database dan ook vullen met gegevens voor een PostgrSQL server en SQL server.
 
