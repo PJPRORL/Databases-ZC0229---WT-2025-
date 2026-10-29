@@ -24,7 +24,7 @@ Je kan hier alles terugvinden over mijn Database leerlijn. Ik heb hier al de noo
 
 ---
 
-# Database Project - Bouwcontrole
+## Database Project - Bouwcontrole
 
 Vanaf dit punt zal ik je het proces tonen van mijn database project waarin ik eerst zal beginnen met het bouwen van een ERD schema voor de Database die ik later zal opzetten voor mijn C# project voor het vak Programming Advanced. Dit zal als ruggengraat dienen om later het ERD gemakkelijk om te kunnen zetten van een tekening (blauwdruk) naar de technische realisatie, zodat een SQL, PostgrSQL of MySQL server later dit kan gebruiken. Ik zal later de database dan ook vullen met gegevens voor een PostgrSQL server en SQL server.
 
@@ -44,13 +44,13 @@ Je zal hier ook afbeeldingen te zien krijgen van het heel proces. Je krijgt het 
 
 <!-- Je zal eerst het uitgewerkte ERD te zien krijgen en later krijg je per Entiteit meer informatie over elk onderdeel -->
 
-# Stappenplan
+### 2.1 Stappenplan
 
-### 2.1 Exporteer ERD afbeelding
+#### 2.2 Exporteer ERD afbeelding
 
 Voordat we het ERD kunnen toevoegen, moeten we deze exporteren als een PNG bestand.
 
-### 2.2 Afbeelding toevoegen in de map van het project
+#### 2.3 Afbeelding toevoegen in de map van het project
 
 In de map [1_Project_ERD](Project%20Database/1_Project_ERD/) zal de afbeelding opgeslagen worden.
 
