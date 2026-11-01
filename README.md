@@ -40,7 +40,7 @@ Je zal hier ook afbeeldingen te zien krijgen van het heel proces. Je krijgt het 
 | 2 | SQL-schema en gegevens | [2_Project_SQL](Project%20Database/2_Project_SQL/) | Gepland |
 | 3 | NoSQL | [3_Project_NoSQL](Project%20Database/3_Project_NoSQL/) | Gepland |
 
-## 2. ERD (Entity Relational Diagram)
+## 2. ERD (Entity Relational Diagram)(#erd-entity-relational-diagram)
 
 <!-- Je zal eerst het uitgewerkte ERD te zien krijgen en later krijg je per Entiteit meer informatie over elk onderdeel -->
 
